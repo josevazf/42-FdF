@@ -19,10 +19,12 @@
 #include <stdlib.h>
 # define SUCCESS 0
 # define ERROR 1
+# define ESC 65307
 # define CMD_NOT_FOUND 127
 # define IN_FILE 0
 # define OUT_FILE 1
 
 // fdf_main.c
+int		deal_key(int key, void *param);
 
 #endif
