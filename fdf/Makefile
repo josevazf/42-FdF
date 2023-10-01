@@ -23,7 +23,7 @@ LIBMLX			= ./minilibx/libmlx.a
 LIBMLX_DIR		= ./minilibx
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= 
 MLX_FLAGS		= -lmlx -lXext -lX11 -lm -lbsd
 MK_FLAG			= --no-print-directory
 RM				= rm -rf
