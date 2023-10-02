@@ -1,43 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_main.c                                       :+:      :+:    :+:   */
+/*   fdf_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/09/29 18:25:53 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:59:36 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		deal_key(int key, void *param)
-{
-	ft_putnbr_fd(key, 0);
-	return (0);
-}
-
 int 	main() 
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
+	fdf_init data;
+	
+	data.mlx_ptr = mlx_init();
+	if (data.mlx_ptr == NULL)
 		ft_error("fdf: ", ERROR);
-	win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "MLX TESTERRRRR");
-	if (win_ptr == NULL)
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "MLX TESTERRRRR");
+	if (data.win_ptr == NULL)
 	{
-		free(win_ptr);
+		free(data.win_ptr);
 		ft_error("fdf: ", ERROR);
 	}	
-	mlx_pixel_put(mlx_ptr, win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0xFFFFFF);
-	mlx_key_hook(win_ptr, deal_key, (void *)0);
-	mlx_loop(mlx_ptr);
+	mlx_pixel_put(data.mlx_ptr, data.win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0xFFFFFF);
+	mlx_key_hook(data.win_ptr, press_key, &data);
+	mlx_loop(data.mlx_ptr);
 
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
-	free(win_ptr);
+	if ()
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
+	free(data.win_ptr);
 }

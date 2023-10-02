@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:01:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/09/07 09:46:59 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:48:21 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,6 @@
    character ’c’ as a delimiter. */
 
 #include "libft.h"
-
-static int	ft_countwords(char const *s, char c)
-{
-	int	i;
-	int	words;
-
-	i = 0;
-	words = 0;
-	while (s[i])
-	{
-		if ((i == 0 && s[i] != c) || (s[i] != c && s[i - 1] == c))
-			words++;
-		i++;
-	}
-	return (words);
-}
 
 static char	*ft_strposi(char const *s, char c, int pos)
 {
