@@ -24,8 +24,20 @@ int 	main()
 	void	*win_ptr;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 500, 500, "MLX TESTERRRRR");
-	mlx_pixel_put(mlx_ptr, win_ptr, 250, 250, 0xFFFFFF);
+	if (mlx_ptr == NULL)
+		ft_error("fdf: ", ERROR);
+	win_ptr = mlx_new_window(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "MLX TESTERRRRR");
+	if (win_ptr == NULL)
+	{
+		free(win_ptr);
+		ft_error("fdf: ", ERROR);
+	}	
+	mlx_pixel_put(mlx_ptr, win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0xFFFFFF);
 	mlx_key_hook(win_ptr, deal_key, (void *)0);
 	mlx_loop(mlx_ptr);
+
+	mlx_destroy_window(mlx_ptr, win_ptr);
+	mlx_destroy_display(mlx_ptr);
+	free(mlx_ptr);
+	free(win_ptr);
 }

@@ -13,16 +13,26 @@
 #ifndef FDF_H
 # define FDF_H
 
-#include "../libft/libft.h"
-#include "../minilibx/mlx.h"
-#include <unistd.h>
-#include <stdlib.h>
+# include "../libft/libft.h"
+# include "../minilibx/mlx.h"
+# include <unistd.h>
+# include <stdlib.h>
 # define SUCCESS 0
 # define ERROR 1
+
+# define WINDOW_WIDTH 900
+# define WINDOW_HEIGHT 600
+
 # define ESC 65307
-# define CMD_NOT_FOUND 127
-# define IN_FILE 0
-# define OUT_FILE 1
+
+# define RED_PIXEL 0xFF0000
+
+typedef struct s_data
+{
+    void    *mlx_ptr;
+    void    *win_ptr;
+
+}   t_data;
 
 // fdf_main.c
 int		deal_key(int key, void *param);
