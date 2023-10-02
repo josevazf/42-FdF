@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:01:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 17:48:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:53:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_split(char const *s, char c)
 
 	i = 0;
 	j = -1;
-	out = malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
+	out = malloc(sizeof(char *) * (ft_count_words_del(s, c) + 1));
 	if (!out)
 		return (NULL);
 	while (s[i])

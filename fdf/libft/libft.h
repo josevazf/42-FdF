@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:26:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 17:48:40 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:49:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int		ft_isdelimiter(char s, char c);
 char	*ft_firstword(char *argv);
 void	ft_free_matrix(char **matrix);
 void	ft_error(char *msg, int exit_code);
-int		ft_countwords(char const *s, char c);
+int		ft_count_words(char const *s);
+int		ft_count_words_del(char const *s, char c);
 
 // List manipulation
 t_list	*ft_lstnew(void *content);

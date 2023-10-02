@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countwords.c                                    :+:      :+:    :+:   */
+/*   ft_count_words_del.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 17:46:44 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 17:46:58 by jrocha-v         ###   ########.fr       */
+/*   Created: 2023/10/02 18:52:44 by jrocha-v          #+#    #+#             */
+/*   Updated: 2023/10/02 18:53:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_countwords(char const *s, char c)
+int	ft_count_words_del(char const *s, char c)
 {
 	int	i;
 	int	words;
