@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 17:55:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/02 18:56:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		get_width(char *file_name)
 
 	width = 0;
 	fd = open(file_name, O_RDONLY, 0);
-	width = ft_countwords(file_name, ' ');
+	width = ft_count_words(get_next_line(fd));
 	close(fd);
 	return (width);
 }
@@ -40,7 +40,8 @@ int		get_width(char *file_name)
 void	read_file(char *file_name, fdf_init *data)
 {
 	data->height = get_height(file_name);
-	ft_printf("%i", data->height);
+		ft_printf("%i\n", data->height);
 	data->width = get_width(file_name);
-	ft_printf("%i", data->width);
+		ft_printf("%i\n", data->width);
+	
 }
