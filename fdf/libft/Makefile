@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 22:23:12 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/02 18:51:53 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/03 11:27:20 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,8 @@ SRCS		= ft_atoi.c \
 			  ft_free_matrix.c \
 			  ft_error.c \
 			  ft_count_words.c \
-			  ft_count_words_del.c
+			  ft_count_words_del.c \
+			  ft_print_imatrix.c
 
 # Substitute .c with .o 
 OBJS		= $(SRCS:%.c=$(OBJS_DIR)/%.o)
