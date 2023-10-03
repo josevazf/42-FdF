@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 12:15:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:01:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		esc_key(int key, void *param)
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
 		free(data->win_ptr);
-		ft_free_imatrix(data->altitude);
+		//ft_free_imatrix(data->altitude);
 		free(data);
 		exit (0);
 	}

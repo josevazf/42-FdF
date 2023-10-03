@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 12:28:32 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:45:31 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,24 @@ int		get_height(char *file_name)
 
 	height = 0;
 	fd = open(file_name, O_RDONLY, 0);
-	while (line)
+/* 	while (1)
 	{
 		line = get_next_line(fd);
+		if(ft_strchr(line, '\n') != 0)
+		{
+			height++;
+			free(line);
+		}
+		else
+		{
+			free(line);
+			break ;
+		}
+	} */
+	while(line)
+	{
+		line = get_next_line(fd);
+		//free(line);
 		height++;
 	}
 	free(line);
@@ -57,7 +72,7 @@ void	fill_matrix(int *altitude, char *line)
 		altitude[i] = ft_atoi(nums[i]);
 		free(nums[i]);
 	}
-	free(nums);	
+	free(nums);
 }
 
 void	read_file(char *file_name, t_init *data)
@@ -72,16 +87,16 @@ void	read_file(char *file_name, t_init *data)
 	data->width = get_width(file_name);
 		ft_printf("%i\n", data->width);
 	fd = open(file_name, O_RDONLY, 0);
-	data->altitude = (int **)malloc(sizeof(int *) * (data->height));
+	data->alt_matrix = (int **)malloc(sizeof(int *) * (data->height));
 	while (++i < data->height)
-		data->altitude[i] = (int *)malloc(sizeof(int) * (data->width));
+		data->alt_matrix[i] = (int *)malloc(sizeof(int) * (data->width));
 	i = -1;
 	while (++i < data->height)
 	{
 		line = get_next_line(fd);
-		fill_matrix(data->altitude[i], line);
+		fill_matrix(data->alt_matrix[i], line);
 		free(line);
 	}
-	ft_print_imatrix(data->altitude, data->height, data->width);
+	//ft_print_imatrix(data->altitude, data->height, data->width);
 	close(fd);
 }

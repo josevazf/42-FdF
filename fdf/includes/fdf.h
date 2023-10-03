@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 12:18:30 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 15:24:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ typedef struct s_data
 {
     int     height;
     int     width;
-    int     **altitude;
+    int     **alt_matrix;
+	char	**rgb_matrix;
     
     void    *mlx_ptr;
     void    *win_ptr;
+	t_img	img;
 
 }   t_init;
 

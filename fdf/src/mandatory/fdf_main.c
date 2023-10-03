@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 12:15:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 14:59:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int 	main(int argc, char **argv)
 		exit(ERROR);
 	
 	data = (t_init*)malloc(sizeof(t_init));
-	read_file(argv[1], data);
+	//read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
 		ft_error("fdf: ", ERROR);
@@ -33,5 +33,4 @@ int 	main(int argc, char **argv)
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0xFFFFFF);
 	mlx_key_hook(data->win_ptr, esc_key, data);
 	mlx_loop(data->mlx_ptr);
-
 }
