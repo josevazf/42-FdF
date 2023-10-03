@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 11:28:20 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:28:32 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,33 @@
 
 int		get_height(char *file_name)
 {
-	int	fd;
-	int	height;
+	int		fd;
+	int		height;
+	char	*line;
 
 	height = 0;
 	fd = open(file_name, O_RDONLY, 0);
-	while (get_next_line(fd))
+	while (line)
+	{
+		line = get_next_line(fd);
 		height++;
+	}
+	free(line);
 	close(fd);
 	return (height);
 }
 
 int		get_width(char *file_name)
 {
-	int	fd;
-	int	width;
+	int		fd;
+	int		width;
+	char	*line;
 
 	width = 0;
 	fd = open(file_name, O_RDONLY, 0);
-	width = ft_count_words(get_next_line(fd));
+	line = get_next_line(fd);
+	width = ft_count_words(line);
+	free(line);
 	close(fd);
 	return (width);
 }
@@ -49,25 +57,10 @@ void	fill_matrix(int *altitude, char *line)
 		altitude[i] = ft_atoi(nums[i]);
 		free(nums[i]);
 	}
-	free(nums[i]);	
+	free(nums);	
 }
 
-void	ft_print_imatrix(int **matrix, int height, int width)
-{
-	int i;
-	int j;
-
-	i = -1;
-	while (++i < height)
-	{
-		j = -1;
-		while (++j < width)
-			ft_printf("%i\t", matrix[i][j]);
-		ft_printf("\n");
-	}
-}
-
-void	read_file(char *file_name, fdf_init *data)
+void	read_file(char *file_name, t_init *data)
 {
 	char	*line;
 	int 	i;
@@ -87,6 +80,7 @@ void	read_file(char *file_name, fdf_init *data)
 	{
 		line = get_next_line(fd);
 		fill_matrix(data->altitude[i], line);
+		free(line);
 	}
 	ft_print_imatrix(data->altitude, data->height, data->width);
 	close(fd);

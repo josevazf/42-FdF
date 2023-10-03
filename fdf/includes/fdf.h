@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 11:27:53 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 12:18:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,27 @@ typedef struct s_data
     void    *mlx_ptr;
     void    *win_ptr;
 
-}   fdf_init;
+}   t_init;
+
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 
 // fdf_main.c
 
 // fdf_read_map.c
-void	read_file(char *file_name, fdf_init *data);
+void	read_file(char *file_name, t_init *data);
 int		get_height(char *file_name);
 int		get_width(char *file_name);
 void	fill_matrix(int *altitude, char *line);
 
 // fdf_events.c
-int		press_key(int key, void *param);
+int		esc_key(int key, void *param);
 
 #endif
