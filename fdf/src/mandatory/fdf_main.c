@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 18:40:26 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 10:54:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,4 @@ int 	main(int argc, char **argv)
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	free(data->win_ptr);
-
-	free(data);
 }

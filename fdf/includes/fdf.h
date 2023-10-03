@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 17:51:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 11:27:53 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_data
 void	read_file(char *file_name, fdf_init *data);
 int		get_height(char *file_name);
 int		get_width(char *file_name);
+void	fill_matrix(int *altitude, char *line);
 
 // fdf_events.c
 int		press_key(int key, void *param);
