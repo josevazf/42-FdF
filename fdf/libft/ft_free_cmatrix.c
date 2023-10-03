@@ -6,13 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:45:40 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/09/19 15:45:59 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/03 11:42:32 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_matrix(char **matrix)
+void	ft_free_cmatrix(char **matrix)
 {
 	int	i;
 
