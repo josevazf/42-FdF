@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/03 10:58:18 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/04 11:46:13 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MLX_FLAGS		= -lmlx -lXext -lX11 -lm -lbsd
 MK_FLAG			= --no-print-directory
 RM				= rm -rf
 
-SRCS			= fdf_main.c fdf_events.c fdf_read_map.c
+SRCS			= fdf_main.c fdf_events.c fdf_read_map.c fdf_error.c
 
 # Substitute .c with .o 
 OBJS			= $(SRCS:%.c=$(OBJS_DIR)/%.o)

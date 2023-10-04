@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 15:24:49 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/04 11:58:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 
 # define RED_PIXEL 0xFF0000
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+
 typedef struct s_data
 {
     int     height;
@@ -40,16 +49,6 @@ typedef struct s_data
 
 }   t_init;
 
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
-
 // fdf_main.c
 
 // fdf_read_map.c
@@ -60,5 +59,10 @@ void	fill_matrix(int *altitude, char *line);
 
 // fdf_events.c
 int		esc_key(int key, void *param);
+
+// fdf_error.c
+int		fd_error(int fd);
+int		malloc_error(void* input);
+
 
 #endif

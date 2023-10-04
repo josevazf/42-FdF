@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/03 15:45:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/04 12:20:42 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,20 @@ int		get_height(char *file_name)
 	char	*line;
 
 	height = 0;
+	line = NULL;
 	fd = open(file_name, O_RDONLY, 0);
-/* 	while (1)
+	fd_error(fd);
+	while (1)
 	{
 		line = get_next_line(fd);
-		if(ft_strchr(line, '\n') != 0)
-		{
-			height++;
-			free(line);
-		}
-		else
+		if (!line)
 		{
 			free(line);
 			break ;
 		}
-	} */
-	while(line)
-	{
-		line = get_next_line(fd);
-		//free(line);
 		height++;
+		free(line);		
 	}
-	free(line);
 	close(fd);
 	return (height);
 }
@@ -53,6 +45,7 @@ int		get_width(char *file_name)
 
 	width = 0;
 	fd = open(file_name, O_RDONLY, 0);
+	fd_error(fd);
 	line = get_next_line(fd);
 	width = ft_count_words(line);
 	free(line);
@@ -72,6 +65,7 @@ void	fill_matrix(int *altitude, char *line)
 		altitude[i] = ft_atoi(nums[i]);
 		free(nums[i]);
 	}
+	altitude[i] = '\0';
 	free(nums);
 }
 
@@ -87,9 +81,14 @@ void	read_file(char *file_name, t_init *data)
 	data->width = get_width(file_name);
 		ft_printf("%i\n", data->width);
 	fd = open(file_name, O_RDONLY, 0);
-	data->alt_matrix = (int **)malloc(sizeof(int *) * (data->height));
+	fd_error(fd);
+	data->alt_matrix = (int **)malloc(sizeof(int *) * (data->height + 1));
+	malloc_error(data->alt_matrix);	
 	while (++i < data->height)
-		data->alt_matrix[i] = (int *)malloc(sizeof(int) * (data->width));
+	{
+		data->alt_matrix[i] = (int *)malloc(sizeof(int) * (data->width + 1));
+		malloc_error(data->alt_matrix[i]);	
+	}
 	i = -1;
 	while (++i < data->height)
 	{
@@ -97,6 +96,7 @@ void	read_file(char *file_name, t_init *data)
 		fill_matrix(data->alt_matrix[i], line);
 		free(line);
 	}
-	//ft_print_imatrix(data->altitude, data->height, data->width);
 	close(fd);
+	data->alt_matrix[i] = '\0';
+	ft_print_imatrix(data->alt_matrix);
 }
