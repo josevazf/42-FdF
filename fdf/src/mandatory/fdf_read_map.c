@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/04 12:20:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:14:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,20 @@ int		get_width(char *file_name)
 	return (width);
 }
 
+void	create_matrix(t_init *data)
+{
+	int	i;
+
+	i = -1;
+	data->alt_matrix = (int **)malloc(sizeof(int *) * (data->height + 1));
+	malloc_error(data->alt_matrix);	
+	while (++i < data->height)
+	{
+		data->alt_matrix[i] = (int *)malloc(sizeof(int) * (data->width + 1));
+		malloc_error(data->alt_matrix[i]);	
+	}
+}
+
 void	fill_matrix(int *altitude, char *line)
 {
 	char	**nums;
@@ -82,21 +96,16 @@ void	read_file(char *file_name, t_init *data)
 		ft_printf("%i\n", data->width);
 	fd = open(file_name, O_RDONLY, 0);
 	fd_error(fd);
-	data->alt_matrix = (int **)malloc(sizeof(int *) * (data->height + 1));
-	malloc_error(data->alt_matrix);	
-	while (++i < data->height)
-	{
-		data->alt_matrix[i] = (int *)malloc(sizeof(int) * (data->width + 1));
-		malloc_error(data->alt_matrix[i]);	
-	}
-	i = -1;
+	create_matrix(data);
 	while (++i < data->height)
 	{
 		line = get_next_line(fd);
 		fill_matrix(data->alt_matrix[i], line);
 		free(line);
 	}
+	line = get_next_line(fd);
+	free(line);
 	close(fd);
-	data->alt_matrix[i] = '\0';
-	ft_print_imatrix(data->alt_matrix);
+	data->alt_matrix[i] = NULL;
+	ft_print_imatrix(data->alt_matrix, data->height, data->width);
 }

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/04 11:58:07 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/04 15:04:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		h;
+	int		w;
 }	t_img;
 
 typedef struct s_data
@@ -41,7 +43,7 @@ typedef struct s_data
     int     height;
     int     width;
     int     **alt_matrix;
-	char	**rgb_matrix;
+	//char	**rgb_matrix;
     
     void    *mlx_ptr;
     void    *win_ptr;
@@ -56,13 +58,14 @@ void	read_file(char *file_name, t_init *data);
 int		get_height(char *file_name);
 int		get_width(char *file_name);
 void	fill_matrix(int *altitude, char *line);
+void	create_matrix(t_init *data);
 
 // fdf_events.c
 int		esc_key(int key, void *param);
 
 // fdf_error.c
+int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void* input);
-
 
 #endif

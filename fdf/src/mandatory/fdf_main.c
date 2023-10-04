@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/04 11:19:28 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:52:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int 	main(int argc, char **argv) 
 {
-	t_init *data;
+	t_init 	*data;
+	//t_img	*image;
 	
 	if (argc != 2)
-		exit(ERROR);
-	
+		args_error();
 	data = (t_init*)malloc(sizeof(t_init));
+	//image = (t_img*)malloc(sizeof(t_img));
 	read_file(argv[1], data);
 	data->mlx_ptr = mlx_init();
 	if (data->mlx_ptr == NULL)
@@ -29,8 +30,12 @@ int 	main(int argc, char **argv)
 	{
 		free(data->win_ptr);
 		ft_error("fdf: ", ERROR);
-	}	
+	}
 	mlx_pixel_put(data->mlx_ptr, data->win_ptr, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0xFFFFFF);
+/* 	image->mlx_img = mlx_new_image(data->mlx_ptr, 4, 4);
+	image->addr = mlx_get_data_addr(image->mlx_img, &image->bpp, &image->line_len, &image->endian);
+	image->w = 4;
+	image->h = 4; */
 	mlx_key_hook(data->win_ptr, esc_key, data);
 	mlx_loop(data->mlx_ptr);
 }
