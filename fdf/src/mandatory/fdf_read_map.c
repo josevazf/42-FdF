@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/04 15:14:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/06 17:41:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		get_width(char *file_name)
 	return (width);
 }
 
-void	create_matrix(t_init *data)
+void	create_matrix(t_data *data)
 {
 	int	i;
 
@@ -83,7 +83,7 @@ void	fill_matrix(int *altitude, char *line)
 	free(nums);
 }
 
-void	read_file(char *file_name, t_init *data)
+void	read_file(char *file_name, t_data *data)
 {
 	char	*line;
 	int 	i;

@@ -6,11 +6,19 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/06 13:07:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/06 18:16:26 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+int		ft_int_max(int x, int y)
+{
+	if (x >= y)
+		return (x);
+	else
+		return (y);
+}
 
 void	ft_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -21,13 +29,29 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
 }
 
-void	color_screen(t_init *data, int color)
+void	color_screen(t_data *data, int color)
 {
-	for (int y = 0; y < WINDOW_WIDTH; ++y)
+	int spc_height;
+	int spc_width;
+	int spacing;
+	int i;
+	int j;
+	
+	i = -1;
+	j = -1;
+	spc_width = (WINDOW_WIDTH - 200) / (data->width - 1);
+	spc_height = (WINDOW_HEIGHT - 200) / (data->height - 1);
+	//spacing = ft_int_max(spc_width, spc_height);
+	spacing = 10;
+	while (++i < data->height)
 	{
-		for (int x = 0; x < WINDOW_WIDTH; ++x)
+		j = -1;
+		while (++j < data->width)
 		{
-			ft_pixel_put(&data->img, x, y, color);
+			if (data->alt_matrix[i][j] == 0)
+				ft_pixel_put(&data->img, 100 + (j * spacing), 100 + (i * spacing), 0xFFFFFF);
+			else
+				ft_pixel_put(&data->img, 100 + (j * spacing), 100 + (i * spacing), color);
 		}
 	}
 }
