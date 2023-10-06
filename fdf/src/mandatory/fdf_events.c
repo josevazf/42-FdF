@@ -6,27 +6,34 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/04 12:14:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:08:35 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		esc_key(int key, void *param)
+int		esc_key(int key, t_init *data)
 {
-	t_init	*data;
+/* 	t_init	*data;
 	
-	data = (t_init *)param;
-	if (key == ESC)
+	data = (t_init *)param; */
+
+	if (key == XK_r)
+		color_screen(data, 0xFF0000);
+	else if (key == XK_g)
+		color_screen(data, 0x00FF00);
+	else if (key == XK_b)
+		color_screen(data, 0x0000FF);	
+	else if (key == XK_Escape)
 	{
+		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 		mlx_destroy_display(data->mlx_ptr);
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
-		free(data->win_ptr);
 		ft_free_imatrix(data->alt_matrix);
-		free(data);
-		exit (0);
+		exit (1);
 	}
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
