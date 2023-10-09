@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/06 18:08:36 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:23:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,17 @@ typedef struct s_screen
 
 typedef struct s_point
 {
-	float	x;
-	float	y;
-	float	z;
+	int		x;
+	int		y;
+	int		z;
+	int		clr;
 }	t_point;
 
 typedef struct s_data
 {
     int     height;
     int     width;
-    int     **alt_matrix;
+    t_point	**map;
 	
     void    *mlx_ptr;
     void    *win_ptr;
@@ -69,14 +70,16 @@ typedef struct s_data
 void	read_file(char *file_name, t_data *data);
 int		get_height(char *file_name);
 int		get_width(char *file_name);
-void	fill_matrix(int *altitude, char *line);
+void	fill_matrix(t_point *map, char *line);
 void	create_matrix(t_data *data);
 
 // fdf_draw.c
 void	ft_pixel_put(t_img *img, int x, int y, int color);
 void	color_screen(t_data *data, int color);
+void	ft_set_coordinates(t_data *data);
 
 // fdf_events.c
+void	ft_free_map(t_point **matrix);
 int		esc_key(int key, t_data *data);
 
 // fdf_error.c

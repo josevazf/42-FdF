@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/06 17:41:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:11:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ void	create_matrix(t_data *data)
 	int	i;
 
 	i = -1;
-	data->alt_matrix = (int **)malloc(sizeof(int *) * (data->height + 1));
-	malloc_error(data->alt_matrix);	
+	data->map = (t_point **)malloc(sizeof(t_point *) * (data->height + 1));
+	malloc_error(data->map);	
 	while (++i < data->height)
 	{
-		data->alt_matrix[i] = (int *)malloc(sizeof(int) * (data->width + 1));
-		malloc_error(data->alt_matrix[i]);	
+		data->map[i] = (t_point *)malloc(sizeof(t_point) * (data->width + 1));
+		malloc_error(data->map[i]);	
 	}
 }
 
-void	fill_matrix(int *altitude, char *line)
+void	fill_matrix(t_point *map, char *line)
 {
 	char	**nums;
 	int		i;
@@ -76,10 +76,17 @@ void	fill_matrix(int *altitude, char *line)
 	nums = ft_split(line, ' ');
 	while (nums[++i])
 	{
-		altitude[i] = ft_atoi(nums[i]);
+		map[i].x = 0;
+		map[i].y = 0;
+		map[i].z = ft_atoi(nums[i]);
+		if (!ft_strchr(nums[i], ','))
+			map[i].clr = 0xFFFFFF;
+		else
+		{
+			map[i].clr = ft_atoi_base(ft_strchr(nums[i], ',') + 3, 16);
+		}
 		free(nums[i]);
 	}
-	altitude[i] = '\0';
 	free(nums);
 }
 
@@ -100,12 +107,12 @@ void	read_file(char *file_name, t_data *data)
 	while (++i < data->height)
 	{
 		line = get_next_line(fd);
-		fill_matrix(data->alt_matrix[i], line);
+		fill_matrix(data->map[i], line);
 		free(line);
 	}
 	line = get_next_line(fd);
 	free(line);
 	close(fd);
-	data->alt_matrix[i] = NULL;
-	ft_print_imatrix(data->alt_matrix, data->height, data->width);
+	data->map[i] = NULL;
+	//ft_print_imatrix(data->map, data->height, data->width);
 }

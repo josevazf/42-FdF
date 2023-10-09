@@ -6,11 +6,24 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/06 18:14:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:23:52 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	ft_free_map(t_point **matrix)
+{
+	int	i;
+	
+	i = 0;
+	while (matrix[i] != NULL)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
 
 int		esc_key(int key, t_data *data)
 {
@@ -30,7 +43,8 @@ int		esc_key(int key, t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
-		ft_free_imatrix(data->alt_matrix);
+		ft_free_map(data->map);
+		//free(data);
 		exit (1);
 	}
 	//color_screen(data);
