@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 16:11:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:10:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		get_width(char *file_name)
 	return (width);
 }
 
-void	create_matrix(t_data *data)
+void	create_map(t_data *data)
 {
 	int	i;
 
@@ -67,7 +67,7 @@ void	create_matrix(t_data *data)
 	}
 }
 
-void	fill_matrix(t_point *map, char *line)
+void	fill_map(t_point *map, char *line, t_data *data)
 {
 	char	**nums;
 	int		i;
@@ -79,6 +79,10 @@ void	fill_matrix(t_point *map, char *line)
 		map[i].x = 0;
 		map[i].y = 0;
 		map[i].z = ft_atoi(nums[i]);
+		if (map[i].z > data->z_max)
+			data->z_max = map[i].z;
+		else if (map[i].z < data->z_min)
+			data->z_min = map[i].z;
 		if (!ft_strchr(nums[i], ','))
 			map[i].clr = 0xFFFFFF;
 		else
@@ -101,15 +105,19 @@ void	read_file(char *file_name, t_data *data)
 		ft_printf("%i\n", data->height);
 	data->width = get_width(file_name);
 		ft_printf("%i\n", data->width);
+	data->z_max = 0;
+	data->z_min = 0;
 	fd = open(file_name, O_RDONLY, 0);
 	fd_error(fd);
-	create_matrix(data);
+	create_map(data);
 	while (++i < data->height)
 	{
 		line = get_next_line(fd);
-		fill_matrix(data->map[i], line);
+		fill_map(data->map[i], line, data);
 		free(line);
 	}
+	ft_printf("z max: %i\n", data->z_max);
+	ft_printf("z min: %i\n", data->z_min);
 	line = get_next_line(fd);
 	free(line);
 	close(fd);

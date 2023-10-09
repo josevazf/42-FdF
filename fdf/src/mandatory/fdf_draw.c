@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 16:10:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 17:04:15 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
 }
 
-void	ft_set_coordinates(t_data *data)
+void	set_coordinates(t_data *data)
 {
 	int spc_height;
 	int spc_width;
@@ -64,6 +64,7 @@ void	color_screen(t_data *data, int color)
 	
 	i = -1;
 	j = -1;
+	set_coordinates(data);
 	while (++i < data->height)
 	{
 		j = -1;
