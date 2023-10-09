@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 18:12:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:14:11 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 # define WINDOW_WIDTH 1600
 # define WINDOW_HEIGHT 900
 
-# define ESC 65307
-
 # define CLR_RED			0xFF0000
 # define CLR_GREEN			0x00FF00
 # define CLR_BLUE			0x0000FF
+# define CLR_WHITE			0xFFFFFF
+# define CLR_BLACK			0x000000
+
 # define CLR_TEXT			0xEAEAEA
 # define CLR_MAIN_SCRN_BG	0x222222
 # define CLR_SUB_SCRN_BG	0x1E1E1E

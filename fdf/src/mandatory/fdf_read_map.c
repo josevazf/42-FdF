@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 18:10:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:18:55 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,9 @@ void	fill_map(t_point *map, char *line, t_data *data)
 		else if (map[i].z < data->z_min)
 			data->z_min = map[i].z;
 		if (!ft_strchr(nums[i], ','))
-			map[i].clr = 0xFFFFFF;
+			map[i].clr = CLR_WHITE;
 		else
-		{
 			map[i].clr = ft_atoi_base(ft_strchr(nums[i], ',') + 3, 16);
-		}
 		free(nums[i]);
 	}
 	free(nums);
@@ -116,8 +114,6 @@ void	read_file(char *file_name, t_data *data)
 		fill_map(data->map[i], line, data);
 		free(line);
 	}
-	ft_printf("z max: %i\n", data->z_max);
-	ft_printf("z min: %i\n", data->z_min);
 	line = get_next_line(fd);
 	free(line);
 	close(fd);

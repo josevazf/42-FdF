@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 17:04:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:05:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,21 @@ void	set_coordinates(t_data *data)
 	
 	i = -1;
 	j = -1;
-	spc_width = (WINDOW_WIDTH - 200) / (data->width - 1);
-	spc_height = (WINDOW_HEIGHT - 200) / (data->height - 1);
+	spc_width = (WINDOW_WIDTH - 100) / (data->width - 1);
+	spc_height = (WINDOW_HEIGHT - 100) / (data->height - 1);
+	if (spc_height * data->height > WINDOW_HEIGHT)
+		spacing = spc_width;
+	else
+		spacing = spc_height;
 	//spacing = ft_int_max(spc_width, spc_height);
-	spacing = 10;
+	//spacing = 2;
 	while (++i < data->height)
 	{
 		j = -1;
 		while (++j < data->width)
 		{
-				data->map[i][j].x = 100 + (j * spacing);
-				data->map[i][j].y = 100 + (i * spacing);
+				data->map[i][j].x = 50 + (j * spacing);
+				data->map[i][j].y = 50 + (i * spacing);
 		}
 	}
 }
