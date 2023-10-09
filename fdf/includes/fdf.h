@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 16:23:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/09 18:12:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,17 @@
 
 # define ESC 65307
 
-# define RED_PIXEL 0xFF0000
+# define CLR_RED			0xFF0000
+# define CLR_GREEN			0x00FF00
+# define CLR_BLUE			0x0000FF
+# define CLR_TEXT			0xEAEAEA
+# define CLR_MAIN_SCRN_BG	0x222222
+# define CLR_SUB_SCRN_BG	0x1E1E1E
+# define CLR_DISCO			0x9A1F6A
+# define CLR_BRICK_RED		0xC2294E
+# define CLR_FLAMINGO		0xEC4B27
+# define CLR_JAFFA			0xEF8633
+# define CLR_SAFFRON		0xF3AF3D
 
 typedef struct s_img
 {
@@ -55,8 +65,10 @@ typedef struct s_point
 
 typedef struct s_data
 {
-    int     height;
     int     width;
+    int     height;
+	int		z_max;
+	int		z_min;
     t_point	**map;
 	
     void    *mlx_ptr;
@@ -70,13 +82,16 @@ typedef struct s_data
 void	read_file(char *file_name, t_data *data);
 int		get_height(char *file_name);
 int		get_width(char *file_name);
-void	fill_matrix(t_point *map, char *line);
-void	create_matrix(t_data *data);
+void	fill_map(t_point *map, char *line, t_data *data);
+void	create_map(t_data *data);
 
 // fdf_draw.c
 void	ft_pixel_put(t_img *img, int x, int y, int color);
 void	color_screen(t_data *data, int color);
-void	ft_set_coordinates(t_data *data);
+void	set_coordinates(t_data *data);
+
+// fdf_color.c
+
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
