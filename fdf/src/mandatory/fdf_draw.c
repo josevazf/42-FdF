@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 21:52:22 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/10 09:51:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,23 @@ void	color_screen(t_data *data, int color)
 				ft_pixel_put(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
 		}
 	}
-	draw_lines(data->map[0][0].x, data->map[0][0].y, data->map[0][1].x, data->map[0][1].y, data);
+	horizontal_lines(data);
+    //vertical_lines(data);
+}
+
+void    horizontal_lines(t_data *data)
+{
+    int x;
+    int y;
+
+    x = -1;
+    y = -1;
+    while (++y < data->height)
+    {
+        x = -1;
+        while (++x < data->width - 1)
+            draw_lines(data->map[x][y].x, data->map[x][y].y, data->map[x + 1][y].x, data->map[x + 1][y].y, data);
+    }
 }
 
 void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
@@ -112,7 +128,7 @@ void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
         } else { // Line is drawn right to left (swap ends)
             x = x2; y = y2; xe = x1;
         }
-        ft_pixel_put(&data->img, x, y, CLR_FLAMINGO); // Draw first pixel
+        ft_pixel_put(&data->img, x, y, CLR_WHITE); // Draw first pixel
         // Rasterize the line
         for (i = 0; x < xe; i++) {
             x = x + 1;
@@ -129,7 +145,7 @@ void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
             }
             // Draw pixel from line span at
             // currently rasterized position
-            ft_pixel_put(&data->img, x, y, CLR_FLAMINGO);
+            ft_pixel_put(&data->img, x, y, CLR_WHITE);
         }
     } else { // The line is Y-axis dominant
         // Line is drawn bottom to top
@@ -138,7 +154,7 @@ void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
         } else { // Line is drawn top to bottom
             x = x2; y = y2; ye = y1;
         }
-		ft_pixel_put(&data->img, x, y, CLR_FLAMINGO); // Draw first pixel
+		ft_pixel_put(&data->img, x, y, CLR_WHITE); // Draw first pixel
         // Rasterize the line
         for (i = 0; y < ye; i++) {
             y = y + 1;
@@ -146,7 +162,7 @@ void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
             if (py <= 0) {
                 py = py + 2 * dx1;
             } else {
-                if ((dx < 0 && dy<0) || (dx > 0 && dy > 0)) {
+                if ((dx < 0 && dy < 0) || (dx > 0 && dy > 0)) {
                     x = x + 1;
                 } else {
                     x = x - 1;
@@ -155,7 +171,7 @@ void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
             }
             // Draw pixel from line span at
             // currently rasterized position
-			ft_pixel_put(&data->img, x, y, CLR_FLAMINGO); 
+			ft_pixel_put(&data->img, x, y, CLR_WHITE); 
         }
     }
  }
