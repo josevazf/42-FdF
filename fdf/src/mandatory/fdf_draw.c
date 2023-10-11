@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/11 12:37:58 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:17:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,38 +77,38 @@ void	color_screen(t_data *data, int color)
 				ft_pixel_put(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
 		}
 	}
-	horizontal_lines(data);
 	vertical_lines(data);
-	draw_lines(100, 600, 500,200, data);
+	horizontal_lines(data);
+	//draw_lines(100, 600, 500,200, data);
 }
 
 void    vertical_lines(t_data *data)
 {
-	int x;
-	int y;
+	int i;
+	int j;
 
-	x = -1;
-	y = -1;
-	while (++y < data->height)
+	i = -1;
+	j = -1;
+	while (++i < data->height - 1)
 	{
-		x = -1;
-		while (++x < data->width - 1)
-			draw_lines(data->map[x][y].x, data->map[x][y].y, data->map[x + 1][y].x, data->map[x + 1][y].y, data);
+		j = -1;
+		while (++j < (data->width))
+			draw_lines(&data->map[i][j], &data->map[i + 1][j], data);
 	}
 }	
 
 void    horizontal_lines(t_data *data)
 {
-	int x;
-	int y;
+	int i;
+	int j;
 
-	x = -1;
-	y = -1;
-	while (++x < data->width)
+	i = -1;
+	j = -1;
+	while (++j < data->width - 1)
 	{
-		y = -1;
-		while (++y < data->height - 1)
-			draw_lines(data->map[x][y].x, data->map[x][y].y, data->map[x][y + 1].x, data->map[x][y + 1].y, data);
+		i = -1;
+		while (++i < data->height)
+			draw_lines(&data->map[i][j], &data->map[i][j + 1], data);
 	}
 }
 
@@ -199,7 +199,12 @@ int		get_point_col(t_point *p1, t_point *p2, int pos, int len)
 
 	color = abs(p1->clr - p2->clr);
 	inc = color / len;
-	return (p1->clr + (inc * pos));	
+	if (p1->clr == p2->clr)
+		return (p1->clr);
+	else if (p1->clr > p2->clr)
+		return (p1->clr - (inc * pos));
+	else
+		return (p1->clr + (inc * pos));	
 }
 
 int     get_slope(int p1, int p2)
@@ -209,20 +214,25 @@ int     get_slope(int p1, int p2)
 	return(-1);    
 }
 
-void    draw_lines(int x1, int y1, int x2, int y2, t_data *data)
+void    draw_lines(t_point *p1, t_point *p2, t_data *data)
 {
 	int dx;
 	int dy;
 	int e2;
 	int err;
 	int i;
-
+	int x1 = p1->x;
+	int y1 = p1->y;
+	int x2 = p2->x;
+	int y2 = p2->y;
+	
 	i = -1;
 	dx = abs(x2 - x1);
 	dy = abs(y2 - y1);
 	err = dx - dy;
 	while (++i < ft_int_max(dx, dy)) {
-		ft_pixel_put(&data->img, x1, y1, get_point_col(&data->map[x1][y1], &data->map[x2][y2], i, ft_int_max(dx, dy)));
+		//ft_pixel_put(&data->img, x1, y1, CLR_BLUE);
+		ft_pixel_put(&data->img, x1, y1, get_point_col(p1, p2, i, ft_int_max(dx, dy)));
 		if (x1 == x2 && y1 == y2) 
 			break;
 		e2 = 2 * err;
@@ -236,10 +246,4 @@ void    draw_lines(int x1, int y1, int x2, int y2, t_data *data)
 		}
 	}
 }
-
-
-
-
-
-
  
