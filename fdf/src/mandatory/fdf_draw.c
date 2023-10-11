@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/11 16:17:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:46:47 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,10 @@ void	color_screen(t_data *data, int color)
 				ft_pixel_put(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
 		}
 	}
-	vertical_lines(data);
-	horizontal_lines(data);
-	//draw_lines(100, 600, 500,200, data);
+	draw_grid(data);
 }
 
-void    vertical_lines(t_data *data)
+void    set_grid(t_data *data)
 {
 	int i;
 	int j;
@@ -95,13 +93,6 @@ void    vertical_lines(t_data *data)
 		while (++j < (data->width))
 			draw_lines(&data->map[i][j], &data->map[i + 1][j], data);
 	}
-}	
-
-void    horizontal_lines(t_data *data)
-{
-	int i;
-	int j;
-
 	i = -1;
 	j = -1;
 	while (++j < data->width - 1)
@@ -110,7 +101,7 @@ void    horizontal_lines(t_data *data)
 		while (++i < data->height)
 			draw_lines(&data->map[i][j], &data->map[i][j + 1], data);
 	}
-}
+}	
 
 /* void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
 {
@@ -191,6 +182,8 @@ void    horizontal_lines(t_data *data)
     }
  }
  */
+
+
 
 int		get_point_col(t_point *p1, t_point *p2, int pos, int len)
 {

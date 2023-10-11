@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/11 14:21:24 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:47:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,21 @@ typedef struct s_screen
 	int		max_y;
 }	t_screen;
 
+typedef struct s_color
+{
+	unsigned char 	r;
+	unsigned char	g;
+	unsigned char	b;
+}	t_color;
+
+
 typedef struct s_point
 {
 	int		x;
 	int		y;
 	int		z;
 	int		clr;
+	t_color	clrRGB;
 }	t_point;
 
 typedef struct s_data
@@ -91,11 +100,10 @@ void	ft_pixel_put(t_img *img, int x, int y, int color);
 void	color_screen(t_data *data, int color);
 void	set_coordinates(t_data *data);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data);
-void	horizontal_lines(t_data *data);
-void	vertical_lines(t_data *data);
+void	set_grid(t_data *data);
 
 // fdf_color.c
-
+void	hex_to_rgb(int hex_color, t_point *data);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);

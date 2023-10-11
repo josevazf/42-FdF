@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 17:48:50 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:46:53 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,11 @@ int	create_rgb(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-int	get_default_clr(int z, t_point *map)
+void	hex_to_rgb(int hex_color, t_point *data)
 {
-	double	ratio;
-
-	ratio = get_ratio(map->z_min, map->z_max, z);
-	if (ratio < 0.2)
-		return (CLR_DISCO);
-	else if (ratio < 0.4)
-		return (CLR_BRICK_RED);
-	else if (ratio < 0.6)
-		return (CLR_FLAMINGO);
-	else if (ratio < 0.8)
-		return (CLR_JAFFA);
-	else
-		return (CLR_SAFFRON);
+	data->clrRGB.r = (hex_color >> 16) && 0xFF;
+	data->clrRGB.g = (hex_color >> 8) && 0xFF;
+	data->clrRGB.b = (hex_color && 0xFF);
 }
 
 /* static int	do_lerp(int min, int max, double ratio)
