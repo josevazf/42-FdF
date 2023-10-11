@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/10 09:51:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/11 12:37:58 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_pixel_put(t_img *img, int x, int y, int color)
 	int	offset;
 
 	offset = (img->line_len * y) + (x * (img->bpp / 8));
-
 	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
 }
 
@@ -79,25 +78,41 @@ void	color_screen(t_data *data, int color)
 		}
 	}
 	horizontal_lines(data);
-    //vertical_lines(data);
+	vertical_lines(data);
+	draw_lines(100, 600, 500,200, data);
 }
+
+void    vertical_lines(t_data *data)
+{
+	int x;
+	int y;
+
+	x = -1;
+	y = -1;
+	while (++y < data->height)
+	{
+		x = -1;
+		while (++x < data->width - 1)
+			draw_lines(data->map[x][y].x, data->map[x][y].y, data->map[x + 1][y].x, data->map[x + 1][y].y, data);
+	}
+}	
 
 void    horizontal_lines(t_data *data)
 {
-    int x;
-    int y;
+	int x;
+	int y;
 
-    x = -1;
-    y = -1;
-    while (++y < data->height)
-    {
-        x = -1;
-        while (++x < data->width - 1)
-            draw_lines(data->map[x][y].x, data->map[x][y].y, data->map[x + 1][y].x, data->map[x + 1][y].y, data);
-    }
+	x = -1;
+	y = -1;
+	while (++x < data->width)
+	{
+		y = -1;
+		while (++y < data->height - 1)
+			draw_lines(data->map[x][y].x, data->map[x][y].y, data->map[x][y + 1].x, data->map[x][y + 1].y, data);
+	}
 }
 
-void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
+/* void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
 {
     // Iterators, counters required by algorithm
     int x;
@@ -171,8 +186,60 @@ void	draw_lines(int x1, int y1, int x2, int y2, t_data *data)
             }
             // Draw pixel from line span at
             // currently rasterized position
-			ft_pixel_put(&data->img, x, y, CLR_WHITE); 
+			ft_pixel_put(&data->img, x, y, CLR_WHITE);
         }
     }
  }
+ */
+
+int		get_point_col(t_point *p1, t_point *p2, int pos, int len)
+{
+	int color;
+	int inc;
+
+	color = abs(p1->clr - p2->clr);
+	inc = color / len;
+	return (p1->clr + (inc * pos));	
+}
+
+int     get_slope(int p1, int p2)
+{
+	if (p1 < p2)
+		return (1);
+	return(-1);    
+}
+
+void    draw_lines(int x1, int y1, int x2, int y2, t_data *data)
+{
+	int dx;
+	int dy;
+	int e2;
+	int err;
+	int i;
+
+	i = -1;
+	dx = abs(x2 - x1);
+	dy = abs(y2 - y1);
+	err = dx - dy;
+	while (++i < ft_int_max(dx, dy)) {
+		ft_pixel_put(&data->img, x1, y1, get_point_col(&data->map[x1][y1], &data->map[x2][y2], i, ft_int_max(dx, dy)));
+		if (x1 == x2 && y1 == y2) 
+			break;
+		e2 = 2 * err;
+		if (e2 > -dy) {
+			err -= dy;
+			x1 += get_slope(x1, x2);
+		}
+		if (e2 < dx) {
+			err += dx;
+			y1 += get_slope(y1, y2);
+		}
+	}
+}
+
+
+
+
+
+
  

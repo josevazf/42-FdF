@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/10 09:53:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/11 10:48:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	color_screen(t_data *data, int color);
 void	set_coordinates(t_data *data);
 void	draw_lines(int x1, int y1, int x2, int y2, t_data *data);
 void	horizontal_lines(t_data *data);
+void	vertical_lines(t_data *data);
 
 // fdf_color.c
 
