@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/12 12:03:10 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/12 18:50:51 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ RM				= rm -rf
 
 SRCS			= fdf_main.c \
 				  fdf_events.c \
-				  fdf_read_map.c \
+				  fdf_map.c \
 				  fdf_draw.c \
 				  fdf_color.c \
 				  fdf_error.c
