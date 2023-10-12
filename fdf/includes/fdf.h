@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/11 16:47:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:11:34 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ typedef struct s_screen
 
 typedef struct s_color
 {
-	unsigned char 	r;
-	unsigned char	g;
-	unsigned char	b;
+	int 	r;
+	int		g;
+	int		b;
 }	t_color;
 
 
@@ -104,6 +104,7 @@ void	set_grid(t_data *data);
 
 // fdf_color.c
 void	hex_to_rgb(int hex_color, t_point *data);
+int		create_rgb(int r, int g, int b);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
