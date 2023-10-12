@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 19:18:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:10:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,9 @@ void	read_file(char *file_name, t_data *data)
 	int 	fd;
 
 	i = -1;
-	data->height = get_height(file_name);
-		ft_printf("%i\n", data->height);
 	data->width = get_width(file_name);
-		ft_printf("%i\n", data->width);
+	data->height = get_height(file_name);
+		ft_printf("W:%i x H:%i\n", data->width, data->height);
 	data->z_max = 0;
 	data->z_min = 0;
 	fd = open(file_name, O_RDONLY, 0);

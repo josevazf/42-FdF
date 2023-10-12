@@ -6,13 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/11 16:46:53 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:27:11 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static double	get_ratio(int min, int max, int cur)
+/* static double	get_ratio(int min, int max, int cur)
 {
 	double	ratio;
 
@@ -20,18 +20,22 @@ static double	get_ratio(int min, int max, int cur)
 		return (1.0);
 	ratio = (double)(cur - min) / (max - min);
 	return (ratio);
-}
+} */
 
 int	create_rgb(int r, int g, int b)
 {
+	ft_printf("%i",(r << 16 | g << 8 | b));
 	return (r << 16 | g << 8 | b);
 }
 
-void	hex_to_rgb(int hex_color, t_point *data)
+void	hex_to_rgb(int hex_color, t_point *point)
 {
-	data->clrRGB.r = (hex_color >> 16) && 0xFF;
-	data->clrRGB.g = (hex_color >> 8) && 0xFF;
-	data->clrRGB.b = (hex_color && 0xFF);
+	point->clrRGB.r = (hex_color >> 16) & 0xFF;
+	//ft_printf("%i\n", point->clrRGB.r);
+	point->clrRGB.g = (hex_color >> 8) & 0xFF;
+	//ft_printf("%i\n", point->clrRGB.g);
+	point->clrRGB.b = (hex_color & 0xFF);
+	//ft_printf("%i\n", point->clrRGB.b);
 }
 
 /* static int	do_lerp(int min, int max, double ratio)
@@ -44,7 +48,7 @@ void	hex_to_rgb(int hex_color, t_point *data)
 ** Quadrant 2, 3, 6, 7(delta.x < delta.y): sample by y
 */
 
-int	get_clr(t_point cur, t_point *min, t_point *max, t_point delta)
+/* int	get_clr(t_point cur, t_point *min, t_point *max, t_point delta)
 {
 	double	ratio;
 	int		red;
@@ -61,4 +65,4 @@ int	get_clr(t_point cur, t_point *min, t_point *max, t_point delta)
 	green = do_lerp((max->clr >> 8) & 0xFF, (min->clr >> 8) & 0xFF, ratio);
 	blue = do_lerp(max->clr & 0xFF, min->clr & 0xFF, ratio);
 	return ((red << 16) | (green << 8) | blue);
-}
+} */

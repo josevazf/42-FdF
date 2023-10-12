@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/11 16:46:47 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:43:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,9 @@ void	set_coordinates(t_data *data)
 	j = -1;
 	spc_width = (WINDOW_WIDTH - 100) / (data->width - 1);
 	spc_height = (WINDOW_HEIGHT - 100) / (data->height - 1);
-	if (spc_height * data->height > WINDOW_HEIGHT)
+	if (spc_height * (data->height - 1) >= WINDOW_HEIGHT)
+		spacing = spc_width;
+	else if (spc_height * (data->width - 1) >= WINDOW_WIDTH)
 		spacing = spc_width;
 	else
 		spacing = spc_height;
@@ -77,7 +79,7 @@ void	color_screen(t_data *data, int color)
 				ft_pixel_put(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
 		}
 	}
-	draw_grid(data);
+	set_grid(data);
 }
 
 void    set_grid(t_data *data)
@@ -183,21 +185,25 @@ void    set_grid(t_data *data)
  }
  */
 
-
-
-int		get_point_col(t_point *p1, t_point *p2, int pos, int len)
+int		get_point_color(t_point *p1, t_point *p2, int pos, int len)
 {
-	int color;
-	int inc;
+	int r;
+	int g;
+	int b;
+	float ratio;
 
-	color = abs(p1->clr - p2->clr);
-	inc = color / len;
+	ratio = (float)pos / (float)len;
+	hex_to_rgb(p1->clr, p1);
+	hex_to_rgb(p2->clr, p2);
 	if (p1->clr == p2->clr)
 		return (p1->clr);
-	else if (p1->clr > p2->clr)
-		return (p1->clr - (inc * pos));
 	else
-		return (p1->clr + (inc * pos));	
+	{
+		r = p1->clrRGB.r + ((float)(p2->clrRGB.r - p1->clrRGB.r) * ratio);
+		g = p1->clrRGB.g + ((float)(p2->clrRGB.g - p1->clrRGB.g) * ratio);
+		b = p1->clrRGB.b + ((float)(p2->clrRGB.b - p1->clrRGB.b) * ratio);
+		return (r << 16 | g << 8 | b);
+	}
 }
 
 int     get_slope(int p1, int p2)
@@ -225,7 +231,7 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data)
 	err = dx - dy;
 	while (++i < ft_int_max(dx, dy)) {
 		//ft_pixel_put(&data->img, x1, y1, CLR_BLUE);
-		ft_pixel_put(&data->img, x1, y1, get_point_col(p1, p2, i, ft_int_max(dx, dy)));
+		ft_pixel_put(&data->img, x1, y1, get_point_color(p1, p2, i, ft_int_max(dx, dy)));
 		if (x1 == x2 && y1 == y2) 
 			break;
 		e2 = 2 * err;
@@ -239,4 +245,3 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data)
 		}
 	}
 }
- 
