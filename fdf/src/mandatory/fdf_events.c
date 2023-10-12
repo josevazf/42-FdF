@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 16:23:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:08:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@ void	ft_free_map(t_point **matrix)
 
 int		esc_key(int key, t_data *data)
 {
-/* 	t_init	*data;
-	
-	data = (t_init *)param; */
-	if (key == XK_r)
-		color_screen(data, 0xFF0000);
-	else if (key == XK_g)
-		color_screen(data, 0x00FF00);
-	else if (key == XK_b)
-		color_screen(data, 0x0000FF);	
 	if (key == XK_Escape)
 	{
 		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);

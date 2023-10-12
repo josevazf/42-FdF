@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 18:18:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:49:38 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int 	main(int argc, char **argv)
 	
 	if (argc != 2)
 		args_error();
-	read_file(argv[1], &data);
+	process_map(argv[1], &data);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		ft_error("fdf: ", ERROR);

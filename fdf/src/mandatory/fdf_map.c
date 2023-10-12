@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_read_map.c                                     :+:      :+:    :+:   */
+/*   fdf_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/12 15:10:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:07:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		get_height(char *file_name)
+void		get_dimensions(char *file_name, t_data *data)
 {
 	int		fd;
-	int		height;
 	char	*line;
 
-	height = 0;
+	data->height = 0;
+	data->width = 0;
 	line = NULL;
 	fd = open(file_name, O_RDONLY, 0);
 	fd_error(fd);
@@ -30,14 +30,14 @@ int		get_height(char *file_name)
 			free(line);
 			break ;
 		}
-		height++;
-		free(line);		
+		data->width = ft_count_words(line);
+		data->height++;
+		free(line);
 	}
 	close(fd);
-	return (height);
 }
 
-int		get_width(char *file_name)
+/* int		get_width(char *file_name)
 {
 	int		fd;
 	int		width;
@@ -51,7 +51,7 @@ int		get_width(char *file_name)
 	free(line);
 	close(fd);
 	return (width);
-}
+} */
 
 void	create_map(t_data *data)
 {
@@ -92,15 +92,16 @@ void	fill_map(t_point *map, char *line, t_data *data)
 	free(nums);
 }
 
-void	read_file(char *file_name, t_data *data)
+void	process_map(char *file_name, t_data *data)
 {
 	char	*line;
 	int 	i;
 	int 	fd;
 
 	i = -1;
-	data->width = get_width(file_name);
-	data->height = get_height(file_name);
+	//data->width = get_width(file_name);
+	//data->height = get_height(file_name);
+	get_dimensions(file_name, data);
 		ft_printf("W:%i x H:%i\n", data->width, data->height);
 	data->z_max = 0;
 	data->z_min = 0;

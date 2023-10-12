@@ -6,25 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/12 14:27:11 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 18:37:52 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/* static double	get_ratio(int min, int max, int cur)
+int		create_rgb(int r, int g, int b)
 {
-	double	ratio;
-
-	if (min == max)
-		return (1.0);
-	ratio = (double)(cur - min) / (max - min);
-	return (ratio);
-} */
-
-int	create_rgb(int r, int g, int b)
-{
-	ft_printf("%i",(r << 16 | g << 8 | b));
 	return (r << 16 | g << 8 | b);
 }
 
@@ -38,31 +27,23 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	//ft_printf("%i\n", point->clrRGB.b);
 }
 
-/* static int	do_lerp(int min, int max, double ratio)
+int		get_point_color(t_point *p1, t_point *p2, int pos, int len)
 {
-	return ((int)((ratio) * min + (1 - ratio) * max));
-} */
+	int r;
+	int g;
+	int b;
+	float ratio;
 
-/*
-** Quadrant 1, 4, 5, 8(delta.x > delta.y): sample by x
-** Quadrant 2, 3, 6, 7(delta.x < delta.y): sample by y
-*/
-
-/* int	get_clr(t_point cur, t_point *min, t_point *max, t_point delta)
-{
-	double	ratio;
-	int		red;
-	int		green;
-	int		blue;
-
-	if (cur.clr == max->clr)
-		return (cur.clr);
-	if (delta.x > delta.y)
-		ratio = get_ratio(min->x, max->x, cur.x);
+	ratio = (float)pos / (float)len;
+	hex_to_rgb(p1->clr, p1);
+	hex_to_rgb(p2->clr, p2);
+	if (p1->clr == p2->clr)
+		return (p1->clr);
 	else
-		ratio = get_ratio(min->y, max->y, cur.y);
-	red = do_lerp((max->clr >> 16) & 0xFF, (min->clr >> 16) & 0xFF, ratio);
-	green = do_lerp((max->clr >> 8) & 0xFF, (min->clr >> 8) & 0xFF, ratio);
-	blue = do_lerp(max->clr & 0xFF, min->clr & 0xFF, ratio);
-	return ((red << 16) | (green << 8) | blue);
-} */
+	{
+		r = p1->clrRGB.r + ((p2->clrRGB.r - p1->clrRGB.r) * ratio);
+		g = p1->clrRGB.g + ((p2->clrRGB.g - p1->clrRGB.g) * ratio);
+		b = p1->clrRGB.b + ((p2->clrRGB.b - p1->clrRGB.b) * ratio);
+		return (r << 16 | g << 8 | b);
+	}
+}

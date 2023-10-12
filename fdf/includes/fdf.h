@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/12 12:11:34 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:16:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_color
 	int		b;
 }	t_color;
 
-
 typedef struct s_point
 {
 	int		x;
@@ -88,23 +87,24 @@ typedef struct s_data
 
 // fdf_main.c
 
-// fdf_read_map.c
-void	read_file(char *file_name, t_data *data);
-int		get_height(char *file_name);
-int		get_width(char *file_name);
+// fdf_map.c
+void	process_map(char *file_name, t_data *data);
+void	get_dimensions(char *file_name, t_data *data);
+//int		get_width(char *file_name);
 void	fill_map(t_point *map, char *line, t_data *data);
 void	create_map(t_data *data);
 
 // fdf_draw.c
-void	ft_pixel_put(t_img *img, int x, int y, int color);
+void	put_pixel(t_img *img, int x, int y, int color);
 void	color_screen(t_data *data, int color);
 void	set_coordinates(t_data *data);
-void	draw_lines(t_point *p1, t_point *p2, t_data *data);
+void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 void	set_grid(t_data *data);
 
 // fdf_color.c
 void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
+int		get_point_color(t_point *p1, t_point *p2, int pos, int len);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
