@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 13:40:51 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:47:36 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	fill_map(t_point *map, char *line, t_data *data)
 		map[i].x = 0;
 		map[i].y = 0;
 		map[i].z = ft_atoi(nums[i]);
-		if (map[i].z > data->z_max)
+		if (map[i].z >= data->z_max)
 			data->z_max = map[i].z;
-		else if (map[i].z < data->z_min)
+		else if (map[i].z <= data->z_min)
 			data->z_min = map[i].z;
 		if (!ft_strchr(nums[i], ','))
 			map[i].clr = CLR_WHITE;
@@ -83,8 +83,6 @@ void	process_map(char *file_name, t_data *data)
 	int 	fd;
 
 	i = -1;
-	//data->width = get_width(file_name);
-	//data->height = get_height(file_name);
 	get_dimensions(file_name, data);
 		ft_printf("W:%i x H:%i\n", data->width, data->height);
 	data->z_max = 0;
@@ -102,5 +100,4 @@ void	process_map(char *file_name, t_data *data)
 	free(line);
 	close(fd);
 	data->map[i] = NULL;
-	//ft_print_imatrix(data->map, data->height, data->width);
 }

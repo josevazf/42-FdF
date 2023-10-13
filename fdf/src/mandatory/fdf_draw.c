@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 17:56:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:44:42 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,9 @@ void	set_coordinates(t_data *data)
 
 void	color_screen(t_data *data)
 {
-	int spc_height;
-	int spc_width;
-	int spacing;
-	int i;
-	int j;
-	
-	i = -1;
-	j = -1;
 	set_coordinates(data);
 	iso_transfer(data);
 	center_map(data);
-	while (++i < data->height)
-	{
-		j = -1;
-		while (++j < data->width)
-			put_pixel(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
-	}
 	set_grid(data);
 }
 
@@ -106,10 +92,12 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	int dx;
 	int dy;
 	int err;
-	int x1 = p1->x;
-	int y1 = p1->y;
+	int x1;
+	int y1;
 	
 	i = -1;
+	x1 = p1->x;
+	y1 = p1->y;
 	dx = abs(p2->x - x1);
 	dy = abs(p2->y - y1);
 	err = dx - dy;
