@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 17:33:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:26:38 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	iso_transfer(t_data *data);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
-int		esc_key(int key, t_data *data);
+int		key_events(int key, t_data *data);
 
 // fdf_error.c
 int		args_error(void);
