@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 18:44:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:36:50 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	set_coordinates(t_data *data)
 	
 	i = -1;
 	j = -1;
-	spc_width = (WINDOW_WIDTH - 200) / (data->width - 1);
-	spc_height = (WINDOW_HEIGHT - 200) / (data->height - 1);
+	spc_width = (WINDOW_WIDTH - 10) / (data->width - 1);
+	spc_height = (WINDOW_HEIGHT - 10) / (data->height - 1);
 	if (spc_height * (data->height - 1) >= WINDOW_HEIGHT)
 		spacing = spc_width;
 	else if (spc_height * (data->width - 1) >= WINDOW_WIDTH)

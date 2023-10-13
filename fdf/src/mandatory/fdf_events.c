@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 19:18:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 19:35:28 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ float		get_point_c(float z, float max, float min)
 	float norm;
 	range = abs(max - min);
 	norm = (z - min) / (max - min);
-		return (norm * range);	
+		return (norm * range);
 }
 
 void	c_key(t_data *data)
