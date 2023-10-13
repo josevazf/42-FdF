@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/12 19:16:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:26:55 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,11 @@ void	set_grid(t_data *data);
 void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
 int		get_point_color(t_point *p1, t_point *p2, int pos, int len);
+
+// fdf_transform.c
+float	get_average(t_data *data, int t);
+void	center_map(t_data *data);
+void	iso_transfer(t_data *data);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
