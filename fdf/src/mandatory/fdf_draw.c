@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 13:32:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:56:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	set_coordinates(t_data *data)
 	}
 }
 
-void	color_screen(t_data *data, int color)
+void	color_screen(t_data *data)
 {
 	int spc_height;
 	int spc_width;
@@ -66,12 +66,7 @@ void	color_screen(t_data *data, int color)
 	{
 		j = -1;
 		while (++j < data->width)
-		{
-			if (data->map[i][j].z == 0)
-				put_pixel(&data->img, data->map[i][j].x, data->map[i][j].y, color);
-			else
-				put_pixel(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
-		}
+			put_pixel(&data->img, data->map[i][j].x, data->map[i][j].y, data->map[i][j].clr);
 	}
 	set_grid(data);
 }

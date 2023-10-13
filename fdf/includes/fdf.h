@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 12:26:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 17:33:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	create_map(t_data *data);
 
 // fdf_draw.c
 void	put_pixel(t_img *img, int x, int y, int color);
-void	color_screen(t_data *data, int color);
+void	color_screen(t_data *data);
 void	set_coordinates(t_data *data);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 void	set_grid(t_data *data);

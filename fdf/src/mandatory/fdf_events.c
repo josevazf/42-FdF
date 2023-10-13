@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 14:12:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 18:02:57 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,15 @@ int		esc_key(int key, t_data *data)
 {
 	int 	i;
 	int 	j;
-	float 	dif;
+	int 	dif;
 	int		point;
 	t_point *p1;
 	t_point *p2;
-
+	
+	i = -1;
+	j = -1;
+	p1 = malloc(sizeof(t_point));
+	p2 = malloc(sizeof(t_point));
 	dif = abs(data->z_max - data->z_min);
 	p1->clr = CLR_GREEN;
 	p2->clr = CLR_RED;
@@ -48,7 +52,7 @@ int		esc_key(int key, t_data *data)
 				data->map[i][j].clr = get_point_color(p1, p2, point, dif);
 			}
 		}
-		color_screen(data, CLR_WHITE);
+		color_screen(data);
 	}
 	if (key == XK_Escape)
 	{
@@ -59,9 +63,12 @@ int		esc_key(int key, t_data *data)
 		free(data->mlx_ptr);
 		ft_free_map(data->map);
 		//free(data);
+		free(p1);
+		free(p2);
 		exit (1);
 	}
 	//color_screen(data);
+
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
 	return (0);
 }
