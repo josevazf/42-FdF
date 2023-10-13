@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 09:35:22 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:32:55 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	set_coordinates(t_data *data)
 	
 	i = -1;
 	j = -1;
-	spc_width = (WINDOW_WIDTH - 500) / (data->width - 1);
-	spc_height = (WINDOW_HEIGHT - 500) / (data->height - 1);
+	spc_width = (WINDOW_WIDTH - 200) / (data->width - 1);
+	spc_height = (WINDOW_HEIGHT - 200) / (data->height - 1);
 	if (spc_height * (data->height - 1) >= WINDOW_HEIGHT)
 		spacing = spc_width;
 	else if (spc_height * (data->width - 1) >= WINDOW_WIDTH)
@@ -49,50 +49,6 @@ void	set_coordinates(t_data *data)
 	}
 }
 
-void	center_map(t_data *data)
-{
-	float	move_x;
-	float	move_y;
-	int		i;
-	int		j;
-
-	move_x = abs((float)data->map[0][0].x - (float)data->map[data->height-1][data->width-1].x) / 2;
-	move_y = abs((float)data->map[0][0].y - (float)data->map[data->height-1][data->width-1].y) / 2;
-	i = -1;
-	while (++i < data->height)
-	{
-		j = -1;
-		while (++j < data->width)
-		{
-				data->map[i][j].x = data->map[i][j].x + move_x;
-				data->map[i][j].y = data->map[i][j].y + move_y;
-		}
-	}
-}
-
-void	iso_transfer(t_data *data)
-{
-	float	_x;
-	float	_y;
-	float	_z;
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < data->height)
-	{
-		j = -1;
-		while (++j < data->width)
-		{
-			_x = (float)data->map[i][j].x;
-			_y = (float)data->map[i][j].y;
-			_z = (float)data->map[i][j].z;
-			data->map[i][j].x = (float)((_x * 0.707) + (-0.707 * _y));
-			data->map[i][j].y = (float)((_x * 0.408) + (0.408 * _y) + (-0.816 * _z));
-		}
-	}
-}
-
 void	color_screen(t_data *data, int color)
 {
 	int spc_height;
@@ -104,10 +60,8 @@ void	color_screen(t_data *data, int color)
 	i = -1;
 	j = -1;
 	set_coordinates(data);
-	center_map(data);
 	iso_transfer(data);
-	//center_map(data);
-	
+	center_map(data);
 	while (++i < data->height)
 	{
 		j = -1;

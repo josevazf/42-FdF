@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/12 19:07:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/13 13:40:51 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,22 +36,6 @@ void		get_dimensions(char *file_name, t_data *data)
 	}
 	close(fd);
 }
-
-/* int		get_width(char *file_name)
-{
-	int		fd;
-	int		width;
-	char	*line;
-
-	width = 0;
-	fd = open(file_name, O_RDONLY, 0);
-	fd_error(fd);
-	line = get_next_line(fd);
-	width = ft_count_words(line);
-	free(line);
-	close(fd);
-	return (width);
-} */
 
 void	create_map(t_data *data)
 {
