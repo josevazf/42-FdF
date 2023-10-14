@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 18:26:28 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:30:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int 	main(int argc, char **argv)
 	if (argc != 2)
 		args_error();
 	process_map(argv[1], &data);
+	ft_printf("%ix%i\n", data.width, data.height);
+	ft_printf("min:%i max:%i\n", data.z_min, data.z_max);
+	ft_printf("range:%i\n", data.range);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		ft_error("fdf: ", ERROR);

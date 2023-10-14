@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 19:35:28 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:35:03 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void	esc_key(t_data *data)
 	exit (1);
 }
 
-float		get_point_c(float z, float max, float min)
+float		get_point_c(float z, t_data *data)
 {
-	float range;
 	float norm;
-	range = abs(max - min);
-	norm = (z - min) / (max - min);
-		return (norm * range);
+	
+	norm = (z - data->z_min) / (data->z_max - data->z_min);
+	return (norm * data->range);
 }
 
 void	c_key(t_data *data)
@@ -64,9 +63,8 @@ void	c_key(t_data *data)
 		j = -1;
 		while (++j < data->width)
 		{
-			point = get_point_c(data->map[i][j].z, data->z_max, data->z_min);
-			data->map[i][j].clr = get_point_color(p1, p2, point, 
-			abs(data->z_max - data->z_min));
+			point = get_point_c(data->map[i][j].z, data);
+			data->map[i][j].clr = get_point_color(p1, p2, point, data->range);
 		}
 	}
 	color_screen(data);

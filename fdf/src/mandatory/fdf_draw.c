@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 17:19:13 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 19:03:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	set_coordinates(t_data *data)
 	
 	i = -1;
 	j = -1;
-	spc_width = (WINDOW_WIDTH - 10) / (data->width - 1);
-	spc_height = (WINDOW_HEIGHT - 10) / (data->height - 1);
-	if (spc_height * (data->height - 1) >= WINDOW_HEIGHT)
-		spacing = spc_width;
-	else if (spc_height * (data->width - 1) >= WINDOW_WIDTH)
+	spc_width = (WINDOW_WIDTH - 10 )/ (data->width - 1);
+	spc_height = (WINDOW_HEIGHT - 10)/ (data->height - 1);
+	if ((spc_height * (data->height - 1) >= WINDOW_HEIGHT) ||
+		(spc_height * (data->width - 1) >= WINDOW_WIDTH))
 		spacing = spc_width;
 	else
 		spacing = spc_height;
@@ -43,8 +42,8 @@ void	set_coordinates(t_data *data)
 		j = -1;
 		while (++j < data->width)
 		{
-				data->map[i][j].x = j * spacing;
-				data->map[i][j].y = i * spacing;
+			data->map[i][j].x = 10 + (j * spacing);
+			data->map[i][j].y = 10 + (i * spacing);
 		}
 	}
 }
@@ -54,10 +53,10 @@ void	color_screen(t_data *data)
 	set_coordinates(data);
 	iso_transfer(data);
 	center_map(data);
-	set_grid(data);
+	draw_map(data);
 }
 
-void    set_grid(t_data *data)
+void    draw_map(t_data *data)
 {
 	int i;
 	int j;
@@ -84,7 +83,7 @@ int     get_slope(int p1, int p2)
 {
 	if (p1 < p2)
 		return (1);
-	return(-1);    
+	return(-1);
 }
 
 void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
@@ -101,10 +100,9 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	dx = abs(p2->x - x1);
 	dy = abs(p2->y - y1);
 	err = dx - dy;
-	put_pixel(&data->img, 100, 10, CLR_RED);
 	while (++i < ft_int_max(dx, dy)) {
 		//ft_pixel_put(&data->img, x1, y1, CLR_BLUE);
-		if (x1 >= 0 && x1 <= WINDOW_WIDTH && y1 >= 0 && y1 <= WINDOW_HEIGHT)
+		if (x1 > 0 && x1 < WINDOW_WIDTH - 5 && y1 > 0 && y1 < WINDOW_HEIGHT - 5)
 			put_pixel(&data->img, x1, y1, 
 			get_point_color(p1, p2, i, ft_int_max(dx, dy)));
 		if (x1 == p2->x && y1 == p2->y) 
