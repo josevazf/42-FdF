@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 19:36:50 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 17:19:13 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	set_coordinates(t_data *data)
 		j = -1;
 		while (++j < data->width)
 		{
-				data->map[i][j].x = 50 + (j * spacing);
-				data->map[i][j].y = 50 + (i * spacing);
+				data->map[i][j].x = j * spacing;
+				data->map[i][j].y = i * spacing;
 		}
 	}
 }
@@ -101,9 +101,12 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	dx = abs(p2->x - x1);
 	dy = abs(p2->y - y1);
 	err = dx - dy;
+	put_pixel(&data->img, 100, 10, CLR_RED);
 	while (++i < ft_int_max(dx, dy)) {
 		//ft_pixel_put(&data->img, x1, y1, CLR_BLUE);
-		put_pixel(&data->img, x1, y1, get_point_color(p1, p2, i, ft_int_max(dx, dy)));
+		if (x1 >= 0 && x1 <= WINDOW_WIDTH && y1 >= 0 && y1 <= WINDOW_HEIGHT)
+			put_pixel(&data->img, x1, y1, 
+			get_point_color(p1, p2, i, ft_int_max(dx, dy)));
 		if (x1 == p2->x && y1 == p2->y) 
 			break;
 		if (2 * err > -dy) {
