@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 18:26:38 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 18:44:42 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data
     int     height;
 	int		z_max;
 	int		z_min;
+	int		range;
     t_point	**map;
 	
     void    *mlx_ptr;
@@ -90,7 +91,6 @@ typedef struct s_data
 // fdf_map.c
 void	process_map(char *file_name, t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
-//int		get_width(char *file_name);
 void	fill_map(t_point *map, char *line, t_data *data);
 void	create_map(t_data *data);
 
@@ -99,7 +99,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 void	color_screen(t_data *data);
 void	set_coordinates(t_data *data);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
-void	set_grid(t_data *data);
+void	draw_map(t_data *data);
 
 // fdf_color.c
 void	hex_to_rgb(int hex_color, t_point *data);
