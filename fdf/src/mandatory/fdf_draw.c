@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 19:03:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/15 11:33:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,30 @@ void	set_coordinates(t_data *data)
 
 void	color_screen(t_data *data)
 {
+	double ratio;
+
+	ratio = 1;
 	set_coordinates(data);
 	iso_transfer(data);
 	center_map(data);
+	while ((data->map[0][0].y <= 10) || (data->map[0][0].y >= 50))
+	{
+		if ((data->map[0][0].y <= 10))
+		{	
+			set_coordinates(data);
+			scale_map(data, pow(0.9, ratio));
+			iso_transfer(data);
+			center_map(data);
+		}
+		if ((data->map[0][0].y >= 50))
+		{	
+			set_coordinates(data);
+			scale_map(data, pow(1.1, ratio));
+			iso_transfer(data);
+			center_map(data);
+		}
+		ratio = ratio + 1;
+	}
 	draw_map(data);
 }
 

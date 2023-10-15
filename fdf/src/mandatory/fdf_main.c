@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 18:30:49 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/15 12:13:20 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int 	main(int argc, char **argv)
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		ft_error("fdf: ", ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "MLX TESTERRRRR");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "FdF: jrocha-v");
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);

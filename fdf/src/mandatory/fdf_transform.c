@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/13 19:39:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:40:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,23 @@ float	get_average(t_data *data, int t)
 		v4 = (float)data->map[data->height - 1][data->width - 1].y;
 	}
 	return ((v1 + v2 + v3 + v4) / 4);
+}
+
+void	scale_map(t_data *data, double factor)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < data->height)
+	{
+		j = -1;
+		while (++j < data->width)
+		{
+				data->map[i][j].x = (double)data->map[i][j].x * factor;
+				data->map[i][j].y = (double)data->map[i][j].y * factor;
+		}
+	}
 }
 
 void	center_map(t_data *data)
@@ -75,7 +92,7 @@ void	iso_transfer(t_data *data)
 			_y = (float)data->map[i][j].y;
 			_z = (float)data->map[i][j].z;
 			data->map[i][j].x = (float)((_x * 0.707) + (-0.707 * _y));
-			data->map[i][j].y = (float)((_x * 0.408) + (0.408 * _y) + (-0.816 * _z));
+			data->map[i][j].y = (float)((_x * 0.408) + (0.408 * _y) + (-0.816 * _z/100));
 		}
 	}
 }
