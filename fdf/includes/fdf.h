@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 18:44:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:40:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <X11/keysym.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 # define SUCCESS 0
 # define ERROR 1
 
@@ -110,6 +111,7 @@ int		get_point_color(t_point *p1, t_point *p2, int pos, int len);
 float	get_average(t_data *data, int t);
 void	center_map(t_data *data);
 void	iso_transfer(t_data *data);
+void	scale_map(t_data *data, double factor);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
