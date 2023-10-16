@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 14:20:05 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:56:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ float	get_point_position(float z, t_data *data)
 	float norm;
 	
 	norm = (z - data->z_min) / (data->z_max - data->z_min);
-	return (norm * data->range);
+	return (norm * data->z_range);
 }
 
 /* Get direction to draw line */

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 14:19:30 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 19:00:39 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	c_key(t_data *data)
 		while (++j < data->width)
 		{
 			point = get_point_position(data->map[i][j].z, data);
-			data->map[i][j].clr = get_point_color(p1, p2, point, data->range);
+			data->map[i][j].clr = get_point_color(p1, p2, point, data->z_range);
 		}
 	}
 	color_screen(data);

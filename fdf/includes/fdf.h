@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 15:35:44 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:55:41 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_data
     int     height;
 	int		z_max;
 	int		z_min;
-	int		range;
+	int		z_range;
     t_point	**map;
     void    *mlx_ptr;
     void    *win_ptr;

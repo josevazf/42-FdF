@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 15:36:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 18:58:02 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	fill_map(t_point *map, char *line, t_data *data)
 			map[i].clr = ft_atoi_base(ft_strchr(nums[i], ',') + 3, 16);
 		free(nums[i]);
 	}
-	data->range = data->z_max - data->z_min;
+	data->z_range = data->z_max - data->z_min;
 	free(nums);
 }
 
