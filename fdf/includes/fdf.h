@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 14:21:14 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:35:44 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <time.h>
 # define SUCCESS 0
 # define ERROR 1
 

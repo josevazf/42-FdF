@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 14:20:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:57:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,26 @@ void	fit_to_window(t_data *data)
 	while ((data->map[data->height - 1][data->width - 1].y - 
 		data->map[0][0].y >= WIN_H - 20))
 	{
-	set_coordinates(data);
-		if (data->map[data->height - 1][data->width - 1].y - 
-			data->map[0][0].y >= WIN_H - 20)
+		if (data->map[data->height - 1][data->width - 1].y - data->map[0][0].y >= WIN_H - 20)
+		{
+			set_coordinates(data);
 			scale_map(data, pow(0.9, ratio));
-		else if (data->map[data->height - 1][data->width - 1].y - 
-			data->map[0][0].y <= WIN_H / 2)
+		}
+		else if (data->map[data->height - 1][data->width - 1].y - data->map[0][0].y <= WIN_H / 2)
+		{
+			set_coordinates(data);
 			scale_map(data, pow(1.1, ratio));
-		iso_transfer(data);
-		center_map(data);
-		ratio = ratio + 1;
+		}
+	iso_transfer(data);
+	center_map(data);
+	ratio = ratio + 1;
 	}
 }
 
 void	color_screen(t_data *data)
 {
 	set_coordinates(data);
+	//scale_map(data, 0.1);
 	iso_transfer(data);
 	center_map(data);
 	fit_to_window(data);
@@ -105,8 +109,6 @@ void    draw_map(t_data *data)
 	}
 }	
 
-
-
 /* Draw lines with gradient between p1 and p2 */
 void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 {
@@ -122,10 +124,13 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	dx = abs(p2->x - x1);
 	dy = abs(p2->y - y1);
 	err = dx - dy;
-	while (++i < ft_int_max(dx, dy) || (x1 == p2->x && y1 == p2->y))
+	while (++i < ft_int_max(dx, dy))
 	{
+		//ft_printf("%i\n", i);
 		if (x1 > 0 && x1 < WIN_W - 5 && y1 > 0 && y1 < WIN_H - 5)
 			put_pixel(&data->img, x1, y1, get_point_color(p1, p2, i, ft_int_max(dx, dy)));
+		if (x1 == p2->x && y1 == p2->y)
+			break ;
 		if (2 * err > -dy) {
 			err -= dy;
 			x1 += get_slope(x1, p2->x);

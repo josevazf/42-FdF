@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 12:10:36 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:27:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 int 	main(int argc, char **argv) 
 {
 	t_data 	data;
-	
+	time_t	time_bef;
+
+	time(&time_bef);
 	if (argc != 2)
 		args_error();
 	process_map(argv[1], &data);
@@ -35,6 +37,8 @@ int 	main(int argc, char **argv)
 	data.img.mlx_pixel_addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	color_screen(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
+	time_bef = time(NULL) - time_bef;
+	printf("OK, time: %li s\n", time_bef);
 	mlx_key_hook(data.win_ptr, key_events, &data);
 	mlx_loop(data.mlx_ptr);
 }

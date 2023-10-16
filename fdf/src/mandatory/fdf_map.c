@@ -6,13 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 14:17:57 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 15:36:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/* Get point dimensions of the map, width and height */
+/* Get dimensions of the map, width and height */
 void	get_dimensions(char *file_name, t_data *data)
 {
 	int		fd;
