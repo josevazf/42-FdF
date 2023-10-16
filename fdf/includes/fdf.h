@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 23:40:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:21:14 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # define SUCCESS 0
 # define ERROR 1
 
-# define WINDOW_WIDTH 1600
-# define WINDOW_HEIGHT 900
+# define WIN_W 1600
+# define WIN_H 900
 
 # define CLR_RED			0xFF0000
 # define CLR_GREEN			0x00FF00
@@ -81,7 +81,6 @@ typedef struct s_data
 	int		z_min;
 	int		range;
     t_point	**map;
-	
     void    *mlx_ptr;
     void    *win_ptr;
 	t_img	img;
@@ -108,14 +107,20 @@ int		create_rgb(int r, int g, int b);
 int		get_point_color(t_point *p1, t_point *p2, int pos, int len);
 
 // fdf_transform.c
-float	get_average(t_data *data, int t);
 void	center_map(t_data *data);
 void	iso_transfer(t_data *data);
 void	scale_map(t_data *data, double factor);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
+void	esc_key(t_data *data);
+void	c_key(t_data *data);
 int		key_events(int key, t_data *data);
+
+// fdf_utils.c
+float	get_average(t_data *data, int t);
+float	get_point_position(float z, t_data *data);
+int     get_slope(int p1, int p2);
 
 // fdf_error.c
 int		args_error(void);
