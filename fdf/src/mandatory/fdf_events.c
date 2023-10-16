@@ -6,12 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 22:38:58 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:19:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Free the map matrix */
 void	ft_free_map(t_point **matrix)
 {
 	int	i;
@@ -25,6 +26,7 @@ void	ft_free_map(t_point **matrix)
 	free(matrix);
 }
 
+/* Esc-Press - close window and free all memory */
 void	esc_key(t_data *data)
 {
 	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
@@ -36,14 +38,7 @@ void	esc_key(t_data *data)
 	exit (1);
 }
 
-float		get_point_c(float z, t_data *data)
-{
-	float norm;
-	
-	norm = (z - data->z_min) / (data->z_max - data->z_min);
-	return (norm * data->range);
-}
-
+/* C-Press - Create a red->yellow->green gradient */
 void	c_key(t_data *data)
 {
 	int 	i;
@@ -63,7 +58,7 @@ void	c_key(t_data *data)
 		j = -1;
 		while (++j < data->width)
 		{
-			point = get_point_c(data->map[i][j].z, data);
+			point = get_point_position(data->map[i][j].z, data);
 			data->map[i][j].clr = get_point_color(p1, p2, point, data->range);
 		}
 	}
@@ -72,6 +67,7 @@ void	c_key(t_data *data)
 	free(p2);
 }
 
+/* Trigger key press events */
 int		key_events(int key, t_data *data)
 {
 	if (key == XK_c)

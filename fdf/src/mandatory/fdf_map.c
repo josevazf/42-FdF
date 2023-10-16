@@ -6,13 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/14 18:30:30 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:17:57 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		get_dimensions(char *file_name, t_data *data)
+/* Get point dimensions of the map, width and height */
+void	get_dimensions(char *file_name, t_data *data)
 {
 	int		fd;
 	char	*line;
@@ -37,6 +38,7 @@ void		get_dimensions(char *file_name, t_data *data)
 	close(fd);
 }
 
+/* Create an empty matrix representation of the map */
 void	create_map(t_data *data)
 {
 	int	i;
@@ -51,6 +53,7 @@ void	create_map(t_data *data)
 	}
 }
 
+/* Fill the matrix representation of the map with info for each point */
 void	fill_map(t_point *map, char *line, t_data *data)
 {
 	char	**nums;
@@ -77,6 +80,7 @@ void	fill_map(t_point *map, char *line, t_data *data)
 	free(nums);
 }
 
+/* Get all map info */
 void	process_map(char *file_name, t_data *data)
 {
 	char	*line;
@@ -85,7 +89,6 @@ void	process_map(char *file_name, t_data *data)
 
 	i = -1;
 	get_dimensions(file_name, data);
-
 	data->z_max = 0;
 	data->z_min = 0;
 	fd = open(file_name, O_RDONLY, 0);

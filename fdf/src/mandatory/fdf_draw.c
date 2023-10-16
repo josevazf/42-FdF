@@ -6,12 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/15 12:49:07 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:20:00 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+/* Put a pixel on the screen */
 void	put_pixel(t_img *img, int x, int y, int color)
 {
 	int	offset;
@@ -20,6 +21,7 @@ void	put_pixel(t_img *img, int x, int y, int color)
 	*((unsigned int *)(offset + img->mlx_pixel_addr)) = color;
 }
 
+/* Set the coordinates for the map points */
 void	set_coordinates(t_data *data)
 {
 	int spc_height;
@@ -30,10 +32,10 @@ void	set_coordinates(t_data *data)
 	
 	i = -1;
 	j = -1;
-	spc_width = (WINDOW_WIDTH - 10 )/ (data->width - 1);
-	spc_height = (WINDOW_HEIGHT - 10)/ (data->height - 1);
-	if ((spc_height * (data->height - 1) >= WINDOW_HEIGHT) ||
-		(spc_height * (data->width - 1) >= WINDOW_WIDTH))
+	spc_width = (WIN_W - 10 )/ (data->width - 1);
+	spc_height = (WIN_H - 10)/ (data->height - 1);
+	if ((spc_height * (data->height - 1) >= WIN_H) ||
+		(spc_height * (data->width - 1) >= WIN_W))
 		spacing = spc_width;
 	else
 		spacing = spc_height;
@@ -48,39 +50,38 @@ void	set_coordinates(t_data *data)
 	}
 }
 
-void	color_screen(t_data *data)
+/* Fit isometric view to window */
+void	fit_to_window(t_data *data)
 {
 	double ratio;
 
 	ratio = 1;
+	while ((data->map[data->height - 1][data->width - 1].y - 
+		data->map[0][0].y >= WIN_H - 20))
+	{
+	set_coordinates(data);
+		if (data->map[data->height - 1][data->width - 1].y - 
+			data->map[0][0].y >= WIN_H - 20)
+			scale_map(data, pow(0.9, ratio));
+		else if (data->map[data->height - 1][data->width - 1].y - 
+			data->map[0][0].y <= WIN_H / 2)
+			scale_map(data, pow(1.1, ratio));
+		iso_transfer(data);
+		center_map(data);
+		ratio = ratio + 1;
+	}
+}
+
+void	color_screen(t_data *data)
+{
 	set_coordinates(data);
 	iso_transfer(data);
 	center_map(data);
-	while (((data->map[0][0].y <= 10) || (data->map[0][0].y >= 150)) && (
-		((data->map[data->width][data->height].y >= WINDOW_HEIGHT - 10) || (
-			data->map[data->width][data->height].y <= WINDOW_HEIGHT - 150))))
-	{
-		if ((data->map[0][0].y <= 10) || (
-			data->map[data->width][data->height].y >= WINDOW_HEIGHT - 10))
-		{	
-			set_coordinates(data);
-			scale_map(data, pow(0.9, ratio));
-			iso_transfer(data);
-			center_map(data);
-		}
-		if ((data->map[0][0].y >= 150) || (
-			data->map[data->width][data->height].y <= WINDOW_HEIGHT - 150))
-		{	
-			set_coordinates(data);
-			scale_map(data, pow(1.1, ratio));
-			iso_transfer(data);
-			center_map(data);
-		}
-		ratio = ratio + 1;
-	}
+	fit_to_window(data);
 	draw_map(data);
 }
 
+/* Draw map by connectin points */
 void    draw_map(t_data *data)
 {
 	int i;
@@ -104,13 +105,9 @@ void    draw_map(t_data *data)
 	}
 }	
 
-int     get_slope(int p1, int p2)
-{
-	if (p1 < p2)
-		return (1);
-	return(-1);
-}
 
+
+/* Draw lines with gradient between p1 and p2 */
 void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 {
 	int dx;
@@ -125,13 +122,10 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	dx = abs(p2->x - x1);
 	dy = abs(p2->y - y1);
 	err = dx - dy;
-	while (++i < ft_int_max(dx, dy)) {
-		//ft_pixel_put(&data->img, x1, y1, CLR_BLUE);
-		if (x1 > 0 && x1 < WINDOW_WIDTH - 5 && y1 > 0 && y1 < WINDOW_HEIGHT - 5)
-			put_pixel(&data->img, x1, y1, 
-			get_point_color(p1, p2, i, ft_int_max(dx, dy)));
-		if (x1 == p2->x && y1 == p2->y) 
-			break;
+	while (++i < ft_int_max(dx, dy) || (x1 == p2->x && y1 == p2->y))
+	{
+		if (x1 > 0 && x1 < WIN_W - 5 && y1 > 0 && y1 < WIN_H - 5)
+			put_pixel(&data->img, x1, y1, get_point_color(p1, p2, i, ft_int_max(dx, dy)));
 		if (2 * err > -dy) {
 			err -= dy;
 			x1 += get_slope(x1, p2->x);
