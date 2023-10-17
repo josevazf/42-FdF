@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:41:51 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/09 16:59:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:46:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,12 @@ int	fd_error(int fd)
 int	args_error(void)
 {
 	ft_printf("fdf usage: ./fdf map_name.fdf\n");
+	exit (ERROR);
+}
+
+int	map_error(t_data *data)
+{
+	ft_free_map(data->map);
+	ft_printf("fdf usage: map is not defined by numbers only\n");
 	exit (ERROR);
 }

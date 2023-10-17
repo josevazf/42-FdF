@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 08:32:41 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:47:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,6 @@ int     get_slope(int p1, int p2);
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void* input);
+int		map_error(t_data *data);
 
 #endif

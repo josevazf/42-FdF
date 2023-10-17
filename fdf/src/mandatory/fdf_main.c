@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 08:33:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:26:27 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int 	main(int argc, char **argv)
 	t_data 	data;
 	time_t	time_bef;
 
-	time(&time_bef);
-	if (argc != 2)
+		time(&time_bef);
+	if (argc != 2 || ft_checkext(argv[1], ".fdf"))
 		args_error();
 	process_map(argv[1], &data);
 				ft_printf("%ix%i\n", data.width, data.height);

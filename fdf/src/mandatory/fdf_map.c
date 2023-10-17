@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 18:58:02 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 12:50:18 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	fill_map(t_point *map, char *line, t_data *data)
 	{
 		map[i].x = 0;
 		map[i].y = 0;
+		if (!ft_isdigit(ft_atoi(nums[i])))
+			map_error(data);
 		map[i].z = ft_atoi(nums[i]);
 		if (map[i].z >= data->z_max)
 			data->z_max = map[i].z;
