@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/15 22:23:12 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/12 18:37:03 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/17 12:25:30 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,8 @@ SRCS		= ft_atoi.c \
 			  ft_print_smatrix.c \
 			  ft_isinbase.c \
 			  ft_atoi_base.c \
-			  ft_int_max.c
+			  ft_int_max.c \
+			  ft_checkext.c
 
 # Substitute .c with .o 
 OBJS		= $(SRCS:%.c=$(OBJS_DIR)/%.o)
