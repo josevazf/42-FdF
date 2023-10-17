@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 12:47:49 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:44:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,6 @@ typedef struct s_img
 	int		endian;
 }	t_img;
 
-typedef struct s_screen
-{
-	int		min_x;
-	int		max_x;
-	int		min_y;
-	int		max_y;
-}	t_screen;
-
 typedef struct s_color
 {
 	int 	r;
@@ -81,6 +73,10 @@ typedef struct s_data
 	int		z_max;
 	int		z_min;
 	int		z_range;
+	float	z_ratio;
+	int 	err;
+	int		x1;
+	int		y1;
     t_point	**map;
     void    *mlx_ptr;
     void    *win_ptr;
@@ -101,16 +97,20 @@ void	standard_screen(t_data *data);
 void	set_coordinates(t_data *data);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 void	draw_map(t_data *data);
+void	vertical_lines(t_data *data);
+void	horizontal_lines(t_data *data);
+
 
 // fdf_color.c
 void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
-int		get_point_color(t_point *p1, t_point *p2, int pos, int len);
+int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len);
 
 // fdf_transform.c
+void	scale_map(t_data *data, double factor);
 void	center_map(t_data *data);
 void	iso_transfer(t_data *data);
-void	scale_map(t_data *data, double factor);
+void	fit_to_window(t_data *data);
 
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
@@ -120,13 +120,12 @@ int		key_events(int key, t_data *data);
 
 // fdf_utils.c
 float	get_average(t_data *data, int t);
-float	get_point_position(float z, t_data *data);
+float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 
 // fdf_error.c
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void* input);
-int		map_error(t_data *data);
 
 #endif
