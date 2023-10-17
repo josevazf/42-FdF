@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 19:00:39 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:31:43 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,19 @@ void	ft_free_map(t_point **matrix)
 }
 
 /* Esc-Press - close window and free all memory */
-void	esc_key(t_data *data)
+int		esc_key(t_data *data)
 {
-	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	data->win_ptr = NULL;
-	free(data->mlx_ptr);
-	ft_free_map(data->map);
-	exit (1);
+	if (data)
+	{
+		mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		mlx_destroy_display(data->mlx_ptr);
+		data->win_ptr = NULL;
+		free(data->mlx_ptr);
+		ft_free_map(data->map);
+		exit (1);
+	}
+	return (SUCCESS);
 }
 
 /* C-Press - Create a red->yellow->green gradient */
@@ -62,7 +66,7 @@ void	c_key(t_data *data)
 			data->map[i][j].clr = get_point_color(p1, p2, point, data->z_range);
 		}
 	}
-	color_screen(data);
+	draw_map(data);
 	free(p1);
 	free(p2);
 }

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 14:54:14 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:35:55 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	iso_transfer(t_data *data)
 			y = (float)data->map[i][j].y;
 			z = (float)data->map[i][j].z;
 			data->map[i][j].x = (float)((x * 0.707) + (-0.707 * y));
-			data->map[i][j].y = (float)((x * 0.408) + (0.408 * y) + (-0.816 * z));
+			data->map[i][j].y = (float)((x * 0.408) + (0.408 * y) + (-z));
 		}
 	}
 }

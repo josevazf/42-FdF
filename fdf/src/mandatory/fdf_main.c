@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 19:00:14 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:33:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ int 	main(int argc, char **argv)
 	}
 	data.img.mlx_img = mlx_new_image(data.mlx_ptr, WIN_W, WIN_H);
 	data.img.mlx_pixel_addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
-	color_screen(&data);
+	standard_screen(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
 	time_bef = time(NULL) - time_bef;
 	printf("OK, time: %li s\n", time_bef);
+	mlx_hook(data.win_ptr, 17, 0, esc_key, &data);
 	mlx_key_hook(data.win_ptr, key_events, &data);
 	mlx_loop(data.mlx_ptr);
 }

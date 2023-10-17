@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 15:57:33 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:30:04 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	fit_to_window(t_data *data)
 
 	ratio = 1;
 	while ((data->map[data->height - 1][data->width - 1].y - 
-		data->map[0][0].y >= WIN_H - 20))
+		data->map[0][0].y >= WIN_H - 200))
 	{
-		if (data->map[data->height - 1][data->width - 1].y - data->map[0][0].y >= WIN_H - 20)
+		if (data->map[data->height - 1][data->width - 1].y - data->map[0][0].y >= WIN_H - 200)
 		{
 			set_coordinates(data);
 			scale_map(data, pow(0.9, ratio));
@@ -75,10 +75,9 @@ void	fit_to_window(t_data *data)
 	}
 }
 
-void	color_screen(t_data *data)
+void	standard_screen(t_data *data)
 {
 	set_coordinates(data);
-	//scale_map(data, 0.1);
 	iso_transfer(data);
 	center_map(data);
 	fit_to_window(data);

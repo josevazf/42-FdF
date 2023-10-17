@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/12 18:37:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 08:30:14 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,8 @@ int		create_rgb(int r, int g, int b)
 void	hex_to_rgb(int hex_color, t_point *point)
 {
 	point->clrRGB.r = (hex_color >> 16) & 0xFF;
-	//ft_printf("%i\n", point->clrRGB.r);
 	point->clrRGB.g = (hex_color >> 8) & 0xFF;
-	//ft_printf("%i\n", point->clrRGB.g);
 	point->clrRGB.b = (hex_color & 0xFF);
-	//ft_printf("%i\n", point->clrRGB.b);
 }
 
 int		get_point_color(t_point *p1, t_point *p2, int pos, int len)
