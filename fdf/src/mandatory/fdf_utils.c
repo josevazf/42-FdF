@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/16 18:56:30 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:22:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ float	get_average(t_data *data, int t)
 }
 
 /* Get the position of the point relative to total height */
-float	get_point_position(float z, t_data *data)
+float	get_pnt_position(float z, t_data *data)
 {
 	float norm;
 	
@@ -53,3 +53,4 @@ int     get_slope(int p1, int p2)
 		return (1);
 	return(-1);
 }
+

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 08:30:14 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:14:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	point->clrRGB.b = (hex_color & 0xFF);
 }
 
-int		get_point_color(t_point *p1, t_point *p2, int pos, int len)
+int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len)
 {
 	int r;
 	int g;

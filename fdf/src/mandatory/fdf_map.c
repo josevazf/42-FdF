@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 12:50:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/17 18:45:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	get_dimensions(char *file_name, t_data *data)
 			free(line);
 			break ;
 		}
-		data->width = ft_count_words(line);
+		if (data->width == 0)
+			data->width = ft_count_words(line);
 		data->height++;
 		free(line);
 	}
@@ -65,8 +66,6 @@ void	fill_map(t_point *map, char *line, t_data *data)
 	{
 		map[i].x = 0;
 		map[i].y = 0;
-		if (!ft_isdigit(ft_atoi(nums[i])))
-			map_error(data);
 		map[i].z = ft_atoi(nums[i]);
 		if (map[i].z >= data->z_max)
 			data->z_max = map[i].z;
@@ -78,7 +77,7 @@ void	fill_map(t_point *map, char *line, t_data *data)
 			map[i].clr = ft_atoi_base(ft_strchr(nums[i], ',') + 3, 16);
 		free(nums[i]);
 	}
-	data->z_range = data->z_max - data->z_min;
+
 	free(nums);
 }
 
@@ -102,6 +101,8 @@ void	process_map(char *file_name, t_data *data)
 		fill_map(data->map[i], line, data);
 		free(line);
 	}
+	data->z_range = data->z_max - data->z_min;
+	data->z_ratio = (data->z_range / (float)(data->width * data->height));
 	line = get_next_line(fd);
 	free(line);
 	close(fd);
