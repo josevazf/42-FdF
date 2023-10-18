@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:15:39 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:31:21 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	scale_map(t_data *data, double factor)
 		j = -1;
 		while (++j < data->width)
 		{
-				data->map[i][j].x = (double)data->map[i][j].x * factor;
-				data->map[i][j].y = (double)data->map[i][j].y * factor;
+			data->map[i][j].x = (double)data->map[i][j].x * factor;
+			data->map[i][j].y = (double)data->map[i][j].y * factor;
 		}
 	}
 }
@@ -53,7 +53,7 @@ void	center_map(t_data *data)
 }
 
 /* Convert from top view to isometric projection */
-void	iso_transfer(t_data *data)
+void	iso_transfer(t_data *data, double angle)
 {
 	float	x;
 	float	y;
@@ -70,15 +70,15 @@ void	iso_transfer(t_data *data)
 			x = (float)data->map[i][j].x;
 			y = (float)data->map[i][j].y;
 			z = (float)data->map[i][j].z;
-			data->map[i][j].x = (float)((x - y) * cos(0.5236));
-			data->map[i][j].y = (float)((x + y) * sin(0.5236) - 
+			data->map[i][j].x = (float)((x - y) * cos(get_rad(angle)));
+			data->map[i][j].y = (float)((x + y) * sin(get_rad(angle)) - 
 			(z * data->z_ratio));
 		}
 	}
 }
 
 /* Fit isometric view to window */
-void	fit_to_window(t_data *data)
+void	fit_to_window(t_data *data, double angle)
 {
 	double ratio;
 
@@ -98,8 +98,23 @@ void	fit_to_window(t_data *data)
 			set_coordinates(data);
 			scale_map(data, pow(1.1, ratio));
 		}
-	iso_transfer(data);
+	iso_transfer(data, angle);
 	center_map(data);
 	ratio = ratio + 1;
+	}
+}
+
+/* Scale map with a given factor */
+void	scale_height(t_data *data, double factor)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < data->height)
+	{
+		j = -1;
+		while (++j < data->width)
+			data->map[i][j].z = (double)data->map[i][j].z * factor;
 	}
 }

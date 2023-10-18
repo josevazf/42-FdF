@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:15:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:32:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,24 @@ void	get_zratio(t_data *data)
 		data->z_ratio = 1;
 	else
 		data->z_ratio = 35.3832 * pow(data->z_range, -1.0655);
+}
+
+/* Free the map matrix */
+void	ft_free_map(t_point **matrix)
+{
+	int	i;
+	
+	i = 0;
+	while (matrix[i] != NULL)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
+}
+/* Convert degrees to radians */
+
+double	get_rad(double deg)
+{
+	return (deg * M_PI / 180);
 }

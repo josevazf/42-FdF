@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:48:59 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:52:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,19 @@ void	make_gradient(t_data *data, int color1, int color2)
 	draw_map(data);
 	free(p1);
 	free(p2);
+}
+
+void	clean_screen(t_data *data)
+{
+	int i;
+	int j;
+
+	i = -1;
+	j = -1;
+	while (++i < WIN_W)
+	{
+		j = -1;
+		while (++j < WIN_H)
+			put_pixel(&data->img, i, j, CLR_BLACK);
+	}
 }

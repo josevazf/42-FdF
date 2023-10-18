@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:15:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:52:27 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,3 @@ void	process_map(char *file_name, t_data *data)
 	close(fd);
 	data->map[i] = NULL;
 }
-
