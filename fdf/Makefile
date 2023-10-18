@@ -6,13 +6,14 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/18 10:09:44 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/18 17:15:06 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= fdf
 
 SRCS_DIR		= src/mandatory
+SRCS_BONUS_DIR	= src/bonus
 
 OBJS_DIR		= objs
 
@@ -40,8 +41,18 @@ SRCS			= fdf_main.c \
 				  fdf_utils.c \
 				  fdf_error.c
 
+SRCS_BONUS		= fdf_main_bonus.c \
+				  fdf_events_bonus.c \
+				  fdf_map_bonus.c \
+				  fdf_draw_bonus.c \
+				  fdf_color_bonus.c \
+				  fdf_transform_bonus.c \
+				  fdf_utils_bonus.c \
+				  fdf_error_bonus.c
+
 # Substitute .c with .o 
 OBJS			= $(SRCS:%.c=$(OBJS_DIR)/%.o)
+OBJS_BONUS		= $(SRCS_BONUS:%.c=$(OBJS_DIR)/%.o)
 
 #default target
 all: $(NAME)
@@ -49,9 +60,18 @@ $(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
 	$(CC) $(CFLAGS) $(OBJS) -L$(LIBMLX_DIR) $(MLX_FLAGS) $(LIBFT) -o $(NAME)
 	echo "Finished!"
 
+bonus: $(OBJS_BONUS) $(LIBFT) $(LIBMLX)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -L$(LIBMLX_DIR) $(MLX_FLAGS) $(LIBFT) -o \
+	$(NAME)
+	echo "Finished!"
+
 #create .o fies
 # $< first prerequisite aka .c; $@ output/target file aka .o
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
+	mkdir -p $(@D)
+	$(CC) -I $(INCLUDES) $(CFLAGS) -c $< -o $@
+
+$(OBJS_DIR)/%.o: $(SRCS_BONUS_DIR)/%.c
 	mkdir -p $(@D)
 	$(CC) -I $(INCLUDES) $(CFLAGS) -c $< -o $@
 
