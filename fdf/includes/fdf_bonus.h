@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 16:43:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:16:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef FDF_BONUS_H
+# define FDF_BONUS_H
 
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
@@ -84,47 +84,47 @@ typedef struct s_data
 	t_img	img;
 }   t_data;
 
-// fdf_main.c
+// fdf_main_bonus.c
 void	standard_screen(t_data *data);
 void	set_coordinates(t_data *data);
 
-// fdf_map.c
+// fdf_map_bonus.c
 void	process_map(char *file_name, t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
 void	fill_map(t_point *map, char *line, t_data *data);
 void	create_map(t_data *data);
 
-// fdf_draw.c
+// fdf_draw_bonus.c
 void	put_pixel(t_img *img, int x, int y, int color);
 void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i);
 void	draw_map(t_data *data);
 void	vertical_lines(t_data *data);
 void	horizontal_lines(t_data *data);
 
-// fdf_color.c
+// fdf_color_bonus.c
 void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
 int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len);
 
-// fdf_transform.c
+// fdf_transform_bonus.c
 void	scale_map(t_data *data, double factor);
 void	center_map(t_data *data);
 void	iso_transfer(t_data *data);
 void	fit_to_window(t_data *data);
 
-// fdf_events.c
+// fdf_events_bonus.c
 void	ft_free_map(t_point **matrix);
 int		esc_key(t_data *data);
 void	c_key(t_data *data, int i, int j);
 int		key_events(int key, t_data *data);
 
-// fdf_utils.c
+// fdf_utils_bonus.c
 float	get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
 
-// fdf_error.c
+// fdf_error_bonus.c
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void* input);
