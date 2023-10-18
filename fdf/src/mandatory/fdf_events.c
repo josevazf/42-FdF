@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 18:15:48 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:58:31 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,12 @@ int		esc_key(t_data *data)
 }
 
 /* C-Press - Create a red->yellow->green gradient */
-void	c_key(t_data *data)
+void	c_key(t_data *data, int i, int j)
 {
-	int 	i;
-	int 	j;
 	int		point;
 	t_point *p1;
 	t_point *p2;
 	
-	i = -1;
-	j = -1;
 	p1 = malloc(sizeof(t_point));
 	p2 = malloc(sizeof(t_point));
 	p1->clr = CLR_GREEN;
@@ -75,7 +71,7 @@ void	c_key(t_data *data)
 int		key_events(int key, t_data *data)
 {
 	if (key == XK_c)
-		c_key(data);
+		c_key(data, -1, -1);
 	if (key == XK_Escape)
 		esc_key(data);
 	//color_screen(data);

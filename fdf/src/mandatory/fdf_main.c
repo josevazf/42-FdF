@@ -6,18 +6,57 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 12:26:27 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:31:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/* Set the coordinates for the map points */
+void	set_coordinates(t_data *data)
+{
+	int spc_height;
+	int spc_width;
+	int spacing;
+	int i;
+	int j;
+	
+	i = -1;
+	j = -1;
+	spc_width = (WIN_W - 100 )/ (data->width - 1);
+	spc_height = (WIN_H - 100)/ (data->height - 1);
+	if ((spc_height * (data->height - 1) >= WIN_H) ||
+		(spc_height * (data->width - 1) >= WIN_W))
+		spacing = spc_width;
+	else
+		spacing = spc_height;
+	while (++i < data->height)
+	{
+		j = -1;
+		while (++j < data->width)
+		{
+			data->map[i][j].x = 50 + (j * spacing);
+			data->map[i][j].y = 50 + (i * spacing);
+		}
+	}
+}
+
+/* Create the first output image in isometric perspective */
+void	standard_screen(t_data *data)
+{
+	set_coordinates(data);
+	iso_transfer(data);
+	center_map(data);
+	fit_to_window(data);
+	draw_map(data);
+}
 
 int 	main(int argc, char **argv) 
 {
 	t_data 	data;
 	time_t	time_bef;
 
-		time(&time_bef);
+	time(&time_bef);
 	if (argc != 2 || ft_checkext(argv[1], ".fdf"))
 		args_error();
 	process_map(argv[1], &data);
