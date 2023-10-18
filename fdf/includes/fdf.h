@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 16:43:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:40:35 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define CLR_YELLOW			0xFFFF00
 # define CLR_WHITE			0xFFFFFF
 # define CLR_BLACK			0x000000
+# define CLR_NEON			0xFF10F0
 
 # define CLR_TEXT			0xEAEAEA
 # define CLR_MAIN_SCRN_BG	0x222222
@@ -105,6 +106,7 @@ void	horizontal_lines(t_data *data);
 void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
 int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len);
+void	make_gradient(t_data *data, int color1, int color2);
 
 // fdf_transform.c
 void	scale_map(t_data *data, double factor);
@@ -115,7 +117,7 @@ void	fit_to_window(t_data *data);
 // fdf_events.c
 void	ft_free_map(t_point **matrix);
 int		esc_key(t_data *data);
-void	c_key(t_data *data, int i, int j);
+void	c_key(t_data *data);
 int		key_events(int key, t_data *data);
 
 // fdf_utils.c
