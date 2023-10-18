@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 18:54:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 15:42:38 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	iso_transfer(t_data *data)
 	int		i;
 	int		j;
 	
-	printf("%f", data->z_ratio);
 	i = -1;
 	while (++i < data->height)
 	{
@@ -73,7 +72,7 @@ void	iso_transfer(t_data *data)
 			z = (float)data->map[i][j].z;
 			data->map[i][j].x = (float)((x - y) * cos(0.5236));
 			data->map[i][j].y = (float)((x + y) * sin(0.5236) - 
-			(z * 1));
+			(z * data->z_ratio));
 		}
 	}
 }
@@ -85,10 +84,10 @@ void	fit_to_window(t_data *data)
 
 	ratio = 1;
 	while ((data->map[data->height - 1][data->width - 1].y - 
-		data->map[0][0].y >= WIN_H - 500))
+		data->map[0][0].y >= WIN_H - 300))
 	{
 		if (data->map[data->height - 1][data->width - 1].y - 
-		data->map[0][0].y >= WIN_H - 500)
+		data->map[0][0].y >= WIN_H - 300)
 		{
 			set_coordinates(data);
 			scale_map(data, pow(0.9, ratio));

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 18:25:14 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 11:14:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	set_coordinates(t_data *data)
 	
 	i = -1;
 	j = -1;
-	spc_width = (WIN_W - 10 )/ (data->width - 1);
-	spc_height = (WIN_H - 10)/ (data->height - 1);
+	spc_width = (WIN_W - 100 )/ (data->width - 1);
+	spc_height = (WIN_H - 100)/ (data->height - 1);
 	if ((spc_height * (data->height - 1) >= WIN_H) ||
 		(spc_height * (data->width - 1) >= WIN_W))
 		spacing = spc_width;
@@ -44,12 +44,13 @@ void	set_coordinates(t_data *data)
 		j = -1;
 		while (++j < data->width)
 		{
-			data->map[i][j].x = 10 + (j * spacing);
-			data->map[i][j].y = 10 + (i * spacing);
+			data->map[i][j].x = 50 + (j * spacing);
+			data->map[i][j].y = 50 + (i * spacing);
 		}
 	}
 }
 
+/* Create the first output image in isometric perspective */
 void	standard_screen(t_data *data)
 {
 	set_coordinates(data);
@@ -59,13 +60,14 @@ void	standard_screen(t_data *data)
 	draw_map(data);
 }
 
-/* Draw map by connectin points */
+/* Draw map by vertical and horizontal lines */
 void    draw_map(t_data *data)
 {
 	vertical_lines(data);
 	horizontal_lines(data);
 }	
 
+/* Define and draw vertical lines */
 void	vertical_lines(t_data *data)
 {
 	int i;
@@ -85,6 +87,7 @@ void	vertical_lines(t_data *data)
 	}
 }
 
+/* Define and draw horizontal lines */
 void	horizontal_lines(t_data *data)
 {
 	int i;

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 18:22:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:19:46 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,10 @@ int     get_slope(int p1, int p2)
 	return(-1);
 }
 
+void	get_zratio(t_data *data)
+{
+	if (data->z_range == 0)
+		data->z_ratio = 1;
+	else
+		data->z_ratio = 35.3832 * pow(data->z_range, -1.0655);
+}

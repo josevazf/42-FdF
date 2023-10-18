@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 18:45:07 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:19:21 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,11 @@ void	process_map(char *file_name, t_data *data)
 		free(line);
 	}
 	data->z_range = data->z_max - data->z_min;
-	data->z_ratio = (data->z_range / (float)(data->width * data->height));
+	get_zratio(data);
+	printf("%f", data->z_ratio);
 	line = get_next_line(fd);
 	free(line);
 	close(fd);
 	data->map[i] = NULL;
 }
+

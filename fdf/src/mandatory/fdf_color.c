@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 18:14:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 16:23:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len)
 	ratio = (float)pos / (float)len;
 	hex_to_rgb(p1->clr, p1);
 	hex_to_rgb(p2->clr, p2);
-	if (p1->clr == p2->clr)
+	if ((p1->clr == p2->clr) || len == 0)
 		return (p1->clr);
 	else
 	{
