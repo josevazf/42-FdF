@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/16 14:22:49 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/18 10:09:44 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LIBMLX			= ./minilibx-linux/libmlx.a
 LIBMLX_DIR		= ./minilibx-linux
 
 CC				= cc
-CFLAGS			= 
+CFLAGS			= -Wall -Wextra -Werror
 MLX_FLAGS		= -lmlx_Linux -lXext -lX11 -lm -lbsd
 
 #gcc program.c -Lminilibx-linux -lmlx_Linux -o process -lX11 -lXext
