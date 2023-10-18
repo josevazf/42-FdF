@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:15:34 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:49:11 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	standard_screen(t_data *data)
 	iso_transfer(data);
 	center_map(data);
 	fit_to_window(data);
-	draw_map(data);
+	make_gradient(data, CLR_WHITE, CLR_NEON);
 }
 
 int 	main(int argc, char **argv) 
