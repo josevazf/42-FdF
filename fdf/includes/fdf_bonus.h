@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf _bonus.h                                       :+:      :+:    :+:   */
+/*   fdf_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:47:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:34:31 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_data
 	int 	err;
 	int		x1;
 	int		y1;
+	double	z_angle;
     t_point	**map;
     void    *mlx_ptr;
     void    *win_ptr;
@@ -107,17 +108,20 @@ void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
 int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len);
 void	make_gradient(t_data *data, int color1, int color2);
+void	clean_screen(t_data *data);
 
 // fdf_transform_bonus.c
 void	scale_map(t_data *data, double factor);
 void	center_map(t_data *data);
-void	iso_transfer(t_data *data);
-void	fit_to_window(t_data *data);
+void	iso_transfer(t_data *data, double angle);
+void	fit_to_window(t_data *data, double angle);
+void	scale_height(t_data *data, double factor);
 
 // fdf_events_bonus.c
 void	ft_free_map(t_point **matrix);
 int		esc_key(t_data *data);
-void	c_key(t_data *data);
+void	translate_map(t_data *data, int key);
+void	zoom_map(t_data *data, int key);
 int		key_events(int key, t_data *data);
 
 // fdf_utils_bonus.c
@@ -125,6 +129,7 @@ float	get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
+double	get_rad(double deg);
 
 // fdf_error_bonus.c
 int		args_error(void);

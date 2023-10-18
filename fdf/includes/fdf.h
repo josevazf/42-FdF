@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:40:35 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/18 17:51:20 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ void	iso_transfer(t_data *data);
 void	fit_to_window(t_data *data);
 
 // fdf_events.c
-void	ft_free_map(t_point **matrix);
 int		esc_key(t_data *data);
 void	c_key(t_data *data);
 int		key_events(int key, t_data *data);
@@ -125,6 +124,7 @@ float	get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
+void	ft_free_map(t_point **matrix);
 
 // fdf_error.c
 int		args_error(void);
