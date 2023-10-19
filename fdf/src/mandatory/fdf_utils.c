@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 15:28:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:21:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int     get_slope(int p1, int p2)
 	return(-1);
 }
 
+/* Get value to smooth Z representation */
 void	get_zratio(t_data *data)
 {
 	if (data->z_range == 0)
