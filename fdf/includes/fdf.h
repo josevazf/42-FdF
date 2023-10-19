@@ -6,15 +6,15 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:51:20 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:32:19 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "../libs/libft/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -79,6 +79,7 @@ typedef struct s_data
 	int 	err;
 	int		x1;
 	int		y1;
+	int		flag_col;
     t_point	**map;
     void    *mlx_ptr;
     void    *win_ptr;
@@ -94,6 +95,7 @@ void	process_map(char *file_name, t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
 void	fill_map(t_point *map, char *line, t_data *data);
 void	create_map(t_data *data);
+void	get_maxmin(t_data *data, int val);
 
 // fdf_draw.c
 void	put_pixel(t_img *img, int x, int y, int color);
@@ -124,11 +126,11 @@ float	get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
-void	ft_free_map(t_point **matrix);
 
 // fdf_error.c
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void* input);
+void	ft_free_map(t_point **matrix);
 
 #endif

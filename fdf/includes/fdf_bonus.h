@@ -6,15 +6,15 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 19:34:31 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:30:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_BONUS_H
 # define FDF_BONUS_H
 
-# include "../libft/libft.h"
-# include "../minilibx-linux/mlx.h"
+# include "../libs/libft/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <unistd.h>
 # include <stdlib.h>
