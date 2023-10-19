@@ -6,11 +6,20 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 16:19:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 15:33:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+/* Get Z max and min values */
+void	get_maxmin(t_data *data, int val)
+{
+	if (val >= data->z_max)
+		data->z_max = val;
+	else if (val <= data->z_min)
+		data->z_min = val;
+}
 
 /* Get dimensions of the map, width and height */
 void	get_dimensions(char *file_name, t_data *data)
@@ -46,11 +55,11 @@ void	create_map(t_data *data)
 
 	i = -1;
 	data->map = (t_point **)malloc(sizeof(t_point *) * (data->height + 1));
-	malloc_error(data->map);	
+	malloc_error(data->map);
 	while (++i < data->height)
 	{
 		data->map[i] = (t_point *)malloc(sizeof(t_point) * (data->width + 1));
-		malloc_error(data->map[i]);	
+		malloc_error(data->map[i]);
 	}
 }
 
@@ -67,21 +76,20 @@ void	fill_map(t_point *map, char *line, t_data *data)
 		map[i].x = 0;
 		map[i].y = 0;
 		map[i].z = ft_atoi(nums[i]);
-		if (map[i].z >= data->z_max)
-			data->z_max = map[i].z;
-		else if (map[i].z <= data->z_min)
-			data->z_min = map[i].z;
+		get_maxmin(data, map[i].z);
 		if (!ft_strchr(nums[i], ','))
 			map[i].clr = CLR_WHITE;
 		else
+		{
 			map[i].clr = ft_atoi_base(ft_strchr(nums[i], ',') + 3, 16);
+			data->flag_col = 0;
+		}
 		free(nums[i]);
 	}
-
 	free(nums);
 }
 
-/* Get all map info */
+/* Set all map info */
 void	process_map(char *file_name, t_data *data)
 {
 	char	*line;
@@ -89,9 +97,10 @@ void	process_map(char *file_name, t_data *data)
 	int 	fd;
 
 	i = -1;
-	get_dimensions(file_name, data);
 	data->z_max = 0;
 	data->z_min = 0;
+	data->flag_col = 1;
+	get_dimensions(file_name, data);
 	fd = open(file_name, O_RDONLY, 0);
 	fd_error(fd);
 	create_map(data);
@@ -109,4 +118,3 @@ void	process_map(char *file_name, t_data *data)
 	close(fd);
 	data->map[i] = NULL;
 }
-
