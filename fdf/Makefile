@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/18 17:15:06 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/19 12:35:02 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,10 @@ SRCS_BONUS_DIR	= src/bonus
 OBJS_DIR		= objs
 
 INCLUDES		= includes
-LIBFT			= ./libft/libft.a
-LIBFT_DIR		= ./libft
-LIBMLX			= ./minilibx-linux/libmlx.a
-LIBMLX_DIR		= ./minilibx-linux
+LIBFT			= ./libs/libft/libft.a
+LIBFT_DIR		= ./libs/libft
+LIBMLX			= ./libs/minilibx-linux/libmlx.a
+LIBMLX_DIR		= ./libs/minilibx-linux
 
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
