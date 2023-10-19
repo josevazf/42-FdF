@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 15:30:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:50:18 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ typedef struct s_point
 
 typedef struct s_data
 {
-    int     width;
-    int     height;
+    int     w;
+    int     h;
 	int		z_max;
 	int		z_min;
 	int		z_range;
@@ -80,6 +80,8 @@ typedef struct s_data
 	int		x1;
 	int		y1;
 	double	z_angle;
+	int		flag_col;
+	int		flag_h;
     t_point	**map;
     void    *mlx_ptr;
     void    *win_ptr;
@@ -95,6 +97,7 @@ void	process_map(char *file_name, t_data *data);
 void	get_dimensions(char *file_name, t_data *data);
 void	fill_map(t_point *map, char *line, t_data *data);
 void	create_map(t_data *data);
+void	get_maxmin(t_data *data, int val);
 
 // fdf_draw_bonus.c
 void	put_pixel(t_img *img, int x, int y, int color);
@@ -118,7 +121,6 @@ void	fit_to_window(t_data *data, double angle);
 void	scale_height(t_data *data, double factor);
 
 // fdf_events_bonus.c
-void	ft_free_map(t_point **matrix);
 int		esc_key(t_data *data);
 void	translate_map(t_data *data, int key);
 void	zoom_map(t_data *data, int key);
@@ -135,5 +137,6 @@ double	get_rad(double deg);
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void* input);
+void	ft_free_map(t_point **matrix);
 
 #endif
