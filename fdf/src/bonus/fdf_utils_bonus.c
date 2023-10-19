@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 19:32:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:48:13 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,21 @@ float	get_average(t_data *data, int t)
 	if (t == 0)
 	{
 		v1 = (float)data->map[0][0].x;
-		v2 = (float)data->map[0][data->width - 1].x;
-		v3 = (float)data->map[data->height - 1][0].x;
-		v4 = (float)data->map[data->height - 1][data->width - 1].x;
+		v2 = (float)data->map[0][data->w - 1].x;
+		v3 = (float)data->map[data->h - 1][0].x;
+		v4 = (float)data->map[data->h - 1][data->w - 1].x;
 	}
 	else
 	{
 		v1 = (float)data->map[0][0].y;
-		v2 = (float)data->map[0][data->width - 1].y;
-		v3 = (float)data->map[data->height - 1][0].y;
-		v4 = (float)data->map[data->height - 1][data->width - 1].y;
+		v2 = (float)data->map[0][data->w - 1].y;
+		v3 = (float)data->map[data->h - 1][0].y;
+		v4 = (float)data->map[data->h - 1][data->w - 1].y;
 	}
 	return ((v1 + v2 + v3 + v4) / 4);
 }
 
-/* Get the position of the point relative to total height */
+/* Get the position of the point relative to total h */
 float	get_pnt_position(float z, t_data *data)
 {
 	float norm;
@@ -54,6 +54,7 @@ int     get_slope(int p1, int p2)
 	return(-1);
 }
 
+/* Get value to smooth Z representation */
 void	get_zratio(t_data *data)
 {
 	if (data->z_range == 0)
@@ -62,21 +63,7 @@ void	get_zratio(t_data *data)
 		data->z_ratio = 35.3832 * pow(data->z_range, -1.0655);
 }
 
-/* Free the map matrix */
-void	ft_free_map(t_point **matrix)
-{
-	int	i;
-	
-	i = 0;
-	while (matrix[i] != NULL)
-	{
-		free(matrix[i]);
-		i++;
-	}
-	free(matrix);
-}
 /* Convert degrees to radians */
-
 double	get_rad(double deg)
 {
 	return (deg * M_PI / 180);

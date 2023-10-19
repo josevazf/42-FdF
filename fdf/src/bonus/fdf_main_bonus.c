@@ -6,34 +6,51 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 11:50:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:51:17 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-/* Set the coordinates for the map points */
+/* Set vars to standard values */
+void	set_vars(t_data *data)
+{
+	data->h = 0;
+	data->w = 0;
+	data->z_max = 0;
+	data->z_min = 0;
+	data->z_range = 0;
+	data->z_ratio = 0;
+	data->err = 0;
+	data->x1 = 0;
+	data->y1 = 0;
+	data->z_angle = 30.0;
+	data->flag_col = 1;
+	data->flag_h = 1;
+}
+
+/* Set coordinates for standard map values */
 void	set_coordinates(t_data *data)
 {
-	int spc_height;
-	int spc_width;
+	int spc_h;
+	int spc_w;
 	int spacing;
 	int i;
 	int j;
 	
 	i = -1;
 	j = -1;
-	spc_width = (WIN_W - 100 )/ (data->width - 1);
-	spc_height = (WIN_H - 100)/ (data->height - 1);
-	if ((spc_height * (data->height - 1) >= WIN_H) ||
-		(spc_height * (data->width - 1) >= WIN_W))
-		spacing = spc_width;
+	spc_w = (WIN_W - 100 )/ (data->w - 1);
+	spc_h = (WIN_H - 100)/ (data->h - 1);
+	if ((spc_h * (data->h - 1) >= WIN_H) ||
+		(spc_h * (data->w - 1) >= WIN_W))
+		spacing = spc_w;
 	else
-		spacing = spc_height;
-	while (++i < data->height)
+		spacing = spc_h;
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 		{
 			data->map[i][j].x = 50 + (j * spacing);
 			data->map[i][j].y = 50 + (i * spacing);
@@ -52,6 +69,8 @@ void	standard_screen(t_data *data)
 	make_gradient(data, CLR_WHITE, CLR_NEON);
 }
 
+
+
 int 	main(int argc, char **argv) 
 {
 	t_data 	data;
@@ -61,7 +80,7 @@ int 	main(int argc, char **argv)
 	if (argc != 2 || ft_checkext(argv[1], ".fdf"))
 		args_error();
 	process_map(argv[1], &data);
-				ft_printf("%ix%i\n", data.width, data.height);
+				ft_printf("%ix%i\n", data.w, data.h);
 				ft_printf("min:%i max:%i\n", data.z_min, data.z_max);
 				ft_printf("range:%i\n", data.z_range);
 	data.mlx_ptr = mlx_init();

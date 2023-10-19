@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 19:12:28 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:46:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	translate_map(t_data *data, int key)
 	
 	i = -1;
 	clean_screen(data);
-	while (++i < data->height)
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 		{
 			if (key == XK_Up)
 				data->map[i][j].y -= 5;
@@ -57,9 +57,9 @@ void	zoom_map(t_data *data, int key)
 {
 	clean_screen(data);
 	if (key == XK_m)
-		scale_height(data, 1.1);
-	else if (key == XK_n)
-		scale_height(data, 0.9);
+		scale_h(data, 1.1);
+	if (key == XK_n)
+		scale_h(data, 0.9);
 	draw_map(data);
 }
 

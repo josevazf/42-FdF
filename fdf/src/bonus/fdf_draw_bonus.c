@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 18:16:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:46:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void    draw_map(t_data *data)
 {
 	vertical_lines(data);
 	horizontal_lines(data);
-	put_pixel(&data->img, data->map[data->height - 1][data->width - 1].x, 
-	data->map[data->height - 1][data->width - 1].y, 
-	data->map[data->height - 1][data->width - 1].clr);
+	put_pixel(&data->img, data->map[data->h - 1][data->w - 1].x, 
+	data->map[data->h - 1][data->w - 1].y, 
+	data->map[data->h - 1][data->w - 1].clr);
 }	
 
 /* Define and draw vertical lines */
@@ -39,10 +39,10 @@ void	vertical_lines(t_data *data)
 
 	i = -1;
 	j = -1;
-	while (++i < data->height - 1)
+	while (++i < data->h - 1)
 	{
 		j = -1;
-		while (++j < (data->width))
+		while (++j < (data->w))
 		{
 			data->x1 = data->map[i][j].x;
 			data->y1 = data->map[i][j].y;
@@ -59,10 +59,10 @@ void	horizontal_lines(t_data *data)
 
 	i = -1;
 	j = -1;
-	while (++j < data->width - 1)
+	while (++j < data->w - 1)
 	{
 		i = -1;
-		while (++i < data->height)
+		while (++i < data->h)
 		{
 			data->x1 = data->map[i][j].x;
 			data->y1 = data->map[i][j].y;

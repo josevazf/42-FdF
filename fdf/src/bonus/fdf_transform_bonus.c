@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 19:31:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:47:55 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	scale_map(t_data *data, double factor)
 	int		j;
 
 	i = -1;
-	while (++i < data->height)
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 		{
 			data->map[i][j].x = (double)data->map[i][j].x * factor;
 			data->map[i][j].y = (double)data->map[i][j].y * factor;
@@ -41,10 +41,10 @@ void	center_map(t_data *data)
 	move_x = (float)(WIN_W / 2) - get_average(data, 0);
 	move_y = (float)(WIN_H / 2) - get_average(data, 1);
 	i = -1;
-	while (++i < data->height)
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 		{
 				data->map[i][j].x = data->map[i][j].x + move_x;
 				data->map[i][j].y = data->map[i][j].y + move_y;
@@ -62,10 +62,10 @@ void	iso_transfer(t_data *data, double angle)
 	int		j;
 	
 	i = -1;
-	while (++i < data->height)
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 		{
 			x = (float)data->map[i][j].x;
 			y = (float)data->map[i][j].y;
@@ -83,16 +83,16 @@ void	fit_to_window(t_data *data, double angle)
 	double ratio;
 
 	ratio = 1;
-	while ((data->map[data->height - 1][data->width - 1].y - 
+	while ((data->map[data->h - 1][data->w - 1].y - 
 		data->map[0][0].y >= WIN_H - 300))
 	{
-		if (data->map[data->height - 1][data->width - 1].y - 
+		if (data->map[data->h - 1][data->w - 1].y - 
 		data->map[0][0].y >= WIN_H - 300)
 		{
 			set_coordinates(data);
 			scale_map(data, pow(0.9, ratio));
 		}
-		else if (data->map[data->height - 1][data->width - 1].y - 
+		else if (data->map[data->h - 1][data->w - 1].y - 
 		data->map[0][0].y <= WIN_H / 2)
 		{
 			set_coordinates(data);
@@ -105,16 +105,16 @@ void	fit_to_window(t_data *data, double angle)
 }
 
 /* Scale map with a given factor */
-void	scale_height(t_data *data, double factor)
+void	scale_h(t_data *data, double factor)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	while (++i < data->height)
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 			data->map[i][j].z = (double)data->map[i][j].z * factor;
 	}
 }
