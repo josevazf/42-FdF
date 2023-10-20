@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 19:14:29 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:49:51 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,47 @@ int		esc_key(t_data *data)
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
 		ft_free_map(data->map);
-		exit (1);
+		exit (EXIT_SUCCESS);
 	}
 	return (SUCCESS);
+}
+
+void	rotate_map(t_data *data, int key)
+{
+	clean_screen(data);
+	if (key == XK_h)
+	{
+		scale_map(data, data->scale_ratio);
+		iso_transfer(data, data->z_angle + 5, data->z_ratio * data->scale_ratio);
+	}
+	if (key == XK_n)
+	{
+		scale_map(data, data->scale_ratio);
+		iso_transfer(data, data->z_angle - 5, data->z_ratio * data->scale_ratio);
+	}	
+	translate_center(data);
+	draw_map(data);
+}
+
+void	top_view(t_data *data)
+{
+	clean_screen(data);
+	set_coordinates(data);
+	translate_center(data);
+	draw_map(data);
 }
 
 void	translate_map(t_data *data, int key)
 {
 	clean_screen(data);
 	if (key == XK_Up)
-		data->c_pos_y -= 5;
-	else if (key == XK_Down)
 		data->c_pos_y += 5;
+	else if (key == XK_Down)
+		data->c_pos_y -= 5;
 	else if (key == XK_Left)
-		data->c_pos_x -= 5;
-	else if (key == XK_Right)
 		data->c_pos_x += 5;
+	else if (key == XK_Right)
+		data->c_pos_x -= 5;
 	translate_center(data);
 	draw_map(data);
 }
@@ -46,9 +71,9 @@ void	translate_map(t_data *data, int key)
 void	zoom_map(t_data *data, int key)
 {
 	clean_screen(data);
-	if (key == XK_m)
+	if (key == XK_j)
 		scale_map(data, data->scale_ratio * 1.1);
-	if (key == XK_n)
+	if (key == XK_m)
 		scale_map(data, data->scale_ratio * 0.9);
 	iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
 	translate_center(data);
@@ -58,12 +83,18 @@ void	zoom_map(t_data *data, int key)
 /* Trigger key press events */
 int		key_events(int key, t_data *data)
 {
-	if (key == XK_m || key == XK_n)
+	if (key == XK_h || key == XK_n)
+		rotate_map(data, key);
+	if (key == XK_j || key == XK_m)
 		zoom_map(data, key);
 	if (key == XK_Up || key == XK_Down || key == XK_Left || key == XK_Right)
 		translate_map(data, key);
 	if (key == XK_c)
 		make_gradient(data, CLR_GREEN, CLR_RED);
+	if (key == XK_t)
+		top_view(data);
+	if (key == XK_r)
+		standard_screen(data);
 	if (key == XK_Escape)
 		esc_key(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);

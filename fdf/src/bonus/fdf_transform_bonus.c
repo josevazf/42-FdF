@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 18:41:13 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:40:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	iso_transfer(t_data *data, double angle, float ratio)
 			(z * ratio));
 		}
 	}
+	data->z_angle = angle;
 }
 
 /* Fit isometric view to window */

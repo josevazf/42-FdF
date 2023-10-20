@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 18:37:42 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:47:10 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ void	set_coordinates(t_data *data)
 /* Create the first output image in isometric perspective */
 void	standard_screen(t_data *data)
 {
+	clean_screen(data);
 	data->z_angle = 30;
+	data->c_pos_x = WIN_W / 2;
+	data->c_pos_y = WIN_H / 2;
 	set_coordinates(data);
 	iso_transfer(data, data->z_angle, data->z_ratio);
 	translate_center(data);
