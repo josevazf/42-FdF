@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 19:12:45 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:39:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	scale_height(t_data *data, double factor);
 int		esc_key(t_data *data);
 void	translate_map(t_data *data, int key);
 void	zoom_map(t_data *data, int key);
+void	rotate_map(t_data *data, int key);
 int		key_events(int key, t_data *data);
 
 // fdf_utils_bonus.c
