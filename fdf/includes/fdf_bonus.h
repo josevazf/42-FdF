@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 19:50:18 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:12:45 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-# include <time.h>
-# define SUCCESS 0
+# include <time.h> // DELETEEEEEEE
 # define ERROR 1
+# define SUCCESS 0
 
 # define WIN_W 1600
 # define WIN_H 900
@@ -32,7 +32,7 @@
 # define CLR_YELLOW			0xFFFF00
 # define CLR_WHITE			0xFFFFFF
 # define CLR_BLACK			0x000000
-# define CLR_NEON			0xFF10F0
+# define CLR_PINK_NEON		0xFF10F0
 
 # define CLR_TEXT			0xEAEAEA
 # define CLR_MAIN_SCRN_BG	0x222222
@@ -76,6 +76,9 @@ typedef struct s_data
 	int		z_min;
 	int		z_range;
 	float	z_ratio;
+	float	scale_ratio;
+	int		c_pos_x;
+	int		c_pos_y;
 	int 	err;
 	int		x1;
 	int		y1;
@@ -91,6 +94,7 @@ typedef struct s_data
 // fdf_main_bonus.c
 void	standard_screen(t_data *data);
 void	set_coordinates(t_data *data);
+void	set_vars(t_data *data);
 
 // fdf_map_bonus.c
 void	process_map(char *file_name, t_data *data);
@@ -115,8 +119,8 @@ void	clean_screen(t_data *data);
 
 // fdf_transform_bonus.c
 void	scale_map(t_data *data, double factor);
-void	center_map(t_data *data);
-void	iso_transfer(t_data *data, double angle);
+void	translate_center(t_data *data);
+void	iso_transfer(t_data *data, double angle, float ratio);
 void	fit_to_window(t_data *data, double angle);
 void	scale_height(t_data *data, double factor);
 
