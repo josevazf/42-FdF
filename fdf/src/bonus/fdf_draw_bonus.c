@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 19:46:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 19:07:14 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ void    draw_map(t_data *data)
 {
 	vertical_lines(data);
 	horizontal_lines(data);
-	put_pixel(&data->img, data->map[data->h - 1][data->w - 1].x, 
-	data->map[data->h - 1][data->w - 1].y, 
-	data->map[data->h - 1][data->w - 1].clr);
+	if (data->x1 > 0 && data->x1 < WIN_W - 5 && data->y1 > 0 && 
+	data->y1 < WIN_H - 5)
+		put_pixel(&data->img, data->map[data->h - 1][data->w - 1].x, 
+		data->map[data->h - 1][data->w - 1].y, 
+		data->map[data->h - 1][data->w - 1].clr);
 }	
 
 /* Define and draw vertical lines */

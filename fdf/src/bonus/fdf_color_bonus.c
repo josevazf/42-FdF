@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 18:52:09 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 11:23:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	make_gradient(t_data *data, int color1, int color2)
 	p2 = malloc(sizeof(t_point));
 	p1->clr = color1;
 	p2->clr = color2;
-	while (++i < data->height)
+	while (++i < data->h)
 	{
 		j = -1;
-		while (++j < data->width)
+		while (++j < data->w)
 		{
 			point = get_pnt_position(data->map[i][j].z, data);
 			data->map[i][j].clr = get_pnt_color(p1, p2, point, data->z_range);

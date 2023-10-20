@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 19:47:35 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/20 18:35:16 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	process_map(char *file_name, t_data *data)
 	int 	fd;
 
 	i = -1;
-
+	set_vars(data);
 	get_dimensions(file_name, data);
 	fd = open(file_name, O_RDONLY, 0);
 	fd_error(fd);
