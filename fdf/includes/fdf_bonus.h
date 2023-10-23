@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 19:39:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:23:55 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ typedef struct s_data
     int     h;
 	int		z_max;
 	int		z_min;
+	double	angle_x;
+	double	angle_y;
+	double	angle_z;
 	int		z_range;
 	float	z_ratio;
 	float	scale_ratio;
@@ -85,6 +88,7 @@ typedef struct s_data
 	double	z_angle;
 	int		flag_col;
 	int		flag_h;
+	int		flag_top;
     t_point	**map;
     void    *mlx_ptr;
     void    *win_ptr;
@@ -113,7 +117,7 @@ void	horizontal_lines(t_data *data);
 // fdf_color_bonus.c
 void	hex_to_rgb(int hex_color, t_point *data);
 int		create_rgb(int r, int g, int b);
-int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len);
+int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 void	make_gradient(t_data *data, int color1, int color2);
 void	clean_screen(t_data *data);
 
