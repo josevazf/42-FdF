@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 11:23:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/22 21:27:54 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	point->clrRGB.b = (hex_color & 0xFF);
 }
 
-int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len)
+int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
 {
 	int r;
 	int g;
 	int b;
 	float ratio;
 
-	ratio = (float)pos / (float)len;
+	ratio = pos / (float)len;
 	hex_to_rgb(p1->clr, p1);
 	hex_to_rgb(p2->clr, p2);
 	if ((p1->clr == p2->clr) || len == 0)
@@ -49,7 +49,7 @@ void	make_gradient(t_data *data, int color1, int color2)
 {
 	int 	i;
 	int		j;
-	int		point;
+	float	point;
 	t_point *p1;
 	t_point *p2;
 	

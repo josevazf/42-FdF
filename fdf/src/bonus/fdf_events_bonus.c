@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 19:49:51 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:08:02 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,45 @@ int		esc_key(t_data *data)
 	return (SUCCESS);
 }
 
+void	rotate_z(t_data *data, double angle, int i, int j)
+{
+	int		x1;
+	int		y1;
+	int		x2;
+	int		y2;
+		
+	data->angle_z = angle;
+	while (++i < data->h)
+	{
+		j = -1;
+		while (++j < data->w)
+		{
+			x1 = (data->map[i][j].x - data->c_pos_x);
+			y1 = (data->map[i][j].y - data->c_pos_y);
+			x2 = x1 * cos(get_rad(data->angle_z)) - y1 * sin(get_rad(data->angle_z));
+			y2 = x1 * sin(get_rad(data->angle_z)) + y1 * cos(get_rad(data->angle_z));
+			data->map[i][j].x = x2 + data->c_pos_x;
+			data->map[i][j].y = y2 + data->c_pos_y;
+		}
+	}
+}
+
 void	rotate_map(t_data *data, int key)
 {
+	printf("before:%f\n", data->angle_z);
 	clean_screen(data);
+	scale_map(data, data->scale_ratio);
 	if (key == XK_h)
+	{
+		rotate_z(data, data->angle_z + 5, -1, -1);
+	}
+	if (key == XK_n)
+	{
+		rotate_z(data, data->angle_z - 5, -1, -1);
+	}
+	if (data->flag_top != 0)
+		iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
+/* 	if (key == XK_h)
 	{
 		scale_map(data, data->scale_ratio);
 		iso_transfer(data, data->z_angle + 5, data->z_ratio * data->scale_ratio);
@@ -40,15 +75,19 @@ void	rotate_map(t_data *data, int key)
 	{
 		scale_map(data, data->scale_ratio);
 		iso_transfer(data, data->z_angle - 5, data->z_ratio * data->scale_ratio);
-	}	
+	} */
 	translate_center(data);
 	draw_map(data);
+	printf("after:%f\n\n", data->angle_z);
 }
 
 void	top_view(t_data *data)
 {
+	data->flag_top = 0;
+	data->z_angle = 0;
+	data->angle_z = 0;
 	clean_screen(data);
-	set_coordinates(data);
+	scale_map(data, data->scale_ratio);
 	translate_center(data);
 	draw_map(data);
 }
@@ -75,7 +114,10 @@ void	zoom_map(t_data *data, int key)
 		scale_map(data, data->scale_ratio * 1.1);
 	if (key == XK_m)
 		scale_map(data, data->scale_ratio * 0.9);
-	iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
+	if (data->angle_z != 0)
+		rotate_z(data, data->angle_z, -1, -1);
+	if (data->z_angle != 0)
+		iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
 	translate_center(data);
 	draw_map(data);
 }

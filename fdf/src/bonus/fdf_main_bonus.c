@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 19:47:10 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:24:25 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ void	set_vars(t_data *data)
 	data->z_min = 0;
 	data->z_range = 0;
 	data->z_ratio = 0;
+	data->angle_x = 0;
+	data->angle_y = 0;
+	data->angle_z = 0;
 	data->scale_ratio = 1;
 	data->c_pos_x = WIN_W / 2;
 	data->c_pos_y = WIN_H / 2;
@@ -30,6 +33,7 @@ void	set_vars(t_data *data)
 	data->z_angle = 30.0;
 	data->flag_col = 1;
 	data->flag_h = 1;
+	data->flag_top = 1;
 }
 
 /* Set coordinates for standard map values */
@@ -72,7 +76,10 @@ void	standard_screen(t_data *data)
 	iso_transfer(data, data->z_angle, data->z_ratio);
 	translate_center(data);
 	fit_to_window(data, data->z_angle);
-	make_gradient(data, CLR_WHITE, CLR_PINK_NEON);
+	if (data->flag_col == 0)
+		draw_map(data);
+	else
+		make_gradient(data, CLR_WHITE, CLR_PINK_NEON);
 }
 
 int 	main(int argc, char **argv) 

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 19:48:13 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:13:43 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,5 @@ void	get_zratio(t_data *data)
 /* Convert degrees to radians */
 double	get_rad(double deg)
 {
-	return (deg * M_PI / 180);
+	return (deg * M_PI / 180.0);
 }
