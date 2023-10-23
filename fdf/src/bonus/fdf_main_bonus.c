@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/23 15:24:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:27:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	set_coordinates(t_data *data)
 void	standard_screen(t_data *data)
 {
 	clean_screen(data);
+	data->flag_top = 1;
+	data->angle_z = 0;
 	data->z_angle = 30;
 	data->c_pos_x = WIN_W / 2;
 	data->c_pos_y = WIN_H / 2;

@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/23 16:08:02 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:49:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	translate_map(t_data *data, int key)
 		data->c_pos_x -= 5;
 	translate_center(data);
 	draw_map(data);
+	printf("c_x:%i\n", data->c_pos_x);
+	printf("c_t:%i\n\n", data->c_pos_y);
 }
 
 void	zoom_map(t_data *data, int key)

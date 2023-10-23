@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/23 15:54:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/23 16:36:50 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void	translate_center(t_data *data)
 	int		i;
 	int		j;
 
-	move_x = (float)data->c_pos_x - get_average(data, 0);
-	move_y = (float)data->c_pos_y - get_average(data, 1);
+	move_x = data->c_pos_x - get_average(data, 0);
+	move_y = data->c_pos_y - get_average(data, 1);
 	i = -1;
 	while (++i < data->h)
 	{
 		j = -1;
 		while (++j < data->w)
 		{
-				data->map[i][j].x = data->map[i][j].x + move_x;
-				data->map[i][j].y = data->map[i][j].y + move_y;
+			data->map[i][j].x = data->map[i][j].x + move_x;
+			data->map[i][j].y = data->map[i][j].y + move_y;
 		}
 	}
 	get_map_center(data);
