@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/23 16:36:50 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/24 14:19:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	fit_to_window(t_data *data, double angle)
 		else if (data->map[data->h - 1][data->w - 1].y - 
 		data->map[0][0].y <= WIN_H / 2)
 			scale_map(data, pow(1.1, ratio));
-	iso_transfer(data, angle, data->z_ratio);
+	iso_transfer(data, angle, data->z_ratio * data->scale_ratio);
 	translate_center(data);
 	ratio = ratio + 1;
 	}
