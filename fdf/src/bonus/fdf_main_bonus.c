@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 17:42:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:08:05 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,38 +60,45 @@ void	standard_screen(t_data *data)
 
 void	menu_info(t_data *data)
 {
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 35, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 29, 35, CLR_WHITE, 
 	"////// MAP INFO //////");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 50, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 29, 55, CLR_WHITE, 
 	"Map Size:");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 95, 50, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 100, 55, CLR_WHITE, 
 	ft_strjoin(ft_strjoin(ft_itoa(data->w), "x"),ft_itoa(data->h)));
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 135, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 29, 80, CLR_WHITE, 
+	"Max Height:");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 100, 80, CLR_WHITE, 
+	ft_itoa(data->z_max));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 29, 105, CLR_WHITE, 
+	"Min Height:");
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 100, 105, CLR_WHITE, 
+	ft_itoa(data->z_min));
 }
 
 void	menu_controls(t_data *data)
 {
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 135, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 29, 135, CLR_WHITE, 
 	"////// CONTROLS //////");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 51, 160, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 41, 160, CLR_WHITE, 
 	"/");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 56, 160, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 46, 160, CLR_WHITE, 
 	"\\");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 41, 175, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 31, 175, CLR_WHITE, 
 	"< + >    move map");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 51, 190, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 41, 190, CLR_WHITE, 
 	"\\");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 55, 190, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 45, 190, CLR_WHITE, 
 	"/");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 55, 220, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 45, 215, CLR_WHITE, 
 	"R      reset map");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 55, 250, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 45, 245, CLR_WHITE, 
 	"T      top view");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 280, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 275, CLR_WHITE, 
 	"A/D     rotate view");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 310, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 305, CLR_WHITE, 
 	"W/S     zoom view");
-	mlx_string_put(data->mlx_ptr, data->win_ptr, 50, 340, CLR_WHITE, 
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 335, CLR_WHITE, 
 	"Esc     close window");
 }
 
@@ -102,13 +109,10 @@ int 	main(int argc, char **argv)
 	if (argc != 2 || ft_checkext(argv[1], ".fdf"))
 		args_error();
 	process_map(argv[1], &data);
-				ft_printf("%ix%i\n", data.w, data.h);
-				ft_printf("min:%i max:%i\n", data.z_min, data.z_max);
-				ft_printf("range:%i\n", data.z_range);
 	data.mlx_ptr = mlx_init();
 	if (data.mlx_ptr == NULL)
 		ft_error("fdf: ", ERROR);
-	data.win_ptr = mlx_new_window(data.mlx_ptr, WIN_W, WIN_H, "FdF: jrocha-v");
+	data.win_ptr = mlx_new_window(data.mlx_ptr, WIN_W, WIN_H, ft_strjoin("[jrocha-v]   FdF: ", data.map_name));
 	if (data.win_ptr == NULL)
 	{
 		free(data.win_ptr);
@@ -118,7 +122,8 @@ int 	main(int argc, char **argv)
 	data.img.mlx_pixel_addr = mlx_get_data_addr(data.img.mlx_img, &data.img.bpp, &data.img.line_len, &data.img.endian);
 	standard_screen(&data);
 	mlx_put_image_to_window(data.mlx_ptr, data.win_ptr, data.img.mlx_img, 0, 0);
-	place_menu(&data);
+	menu_info(&data);
+	menu_controls(&data);
 	mlx_hook(data.win_ptr, 17, 0, esc_key, &data);
 	mlx_key_hook(data.win_ptr, key_events, &data);
 	mlx_loop(data.mlx_ptr);

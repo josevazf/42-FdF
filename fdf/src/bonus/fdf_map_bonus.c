@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/20 18:35:16 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:06:19 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	process_map(char *file_name, t_data *data)
 	int 	fd;
 
 	i = -1;
+	data->map_name = file_name;
 	set_vars(data);
 	get_dimensions(file_name, data);
 	fd = open(file_name, O_RDONLY, 0);
@@ -108,7 +109,6 @@ void	process_map(char *file_name, t_data *data)
 	}
 	data->z_range = data->z_max - data->z_min;
 	get_zratio(data);
-	printf("%f", data->z_ratio);
 	line = get_next_line(fd);
 	free(line);
 	close(fd);
