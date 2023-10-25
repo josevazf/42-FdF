@@ -6,17 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/22 21:27:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 13:44:52 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
-int		create_rgb(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
-
+/* Converts hex RGB representation to each value of r, g and b */
 void	hex_to_rgb(int hex_color, t_point *point)
 {
 	point->clrRGB.r = (hex_color >> 16) & 0xFF;
@@ -24,6 +20,7 @@ void	hex_to_rgb(int hex_color, t_point *point)
 	point->clrRGB.b = (hex_color & 0xFF);
 }
 
+/* Get the color for the gradient point between p1 and p2*/
 int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
 {
 	int r;
@@ -45,6 +42,7 @@ int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
 	}
 }
 
+/* Get the color for all the map points given the gradient */
 void	make_gradient(t_data *data, int color1, int color2)
 {
 	int 	i;
@@ -73,6 +71,7 @@ void	make_gradient(t_data *data, int color1, int color2)
 	free(p2);
 }
 
+/* Fills the screen with black pixels */
 void	clean_screen(t_data *data)
 {
 	int i;

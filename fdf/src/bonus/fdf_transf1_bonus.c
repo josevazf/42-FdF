@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_transform_bonus.c                              :+:      :+:    :+:   */
+/*   fdf_transf1_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/24 14:19:30 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 11:39:35 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
-
-/* Get center of map representation */
-void	get_map_center(t_data *data)
-{
-	data->c_pos_x = get_average(data, 0);
-	data->c_pos_y = get_average(data, 1);
-}
 
 /* Scale map with a given factor */
 void	scale_map(t_data *data, double factor)
@@ -40,16 +33,22 @@ void	scale_map(t_data *data, double factor)
 }
 
 /* Center map on the window */
-void	translate_center(t_data *data)
+void	translate_center(t_data *data, int i, int j)
 {
 	float	move_x;
 	float	move_y;
-	int		i;
-	int		j;
 
-	move_x = data->c_pos_x - get_average(data, 0);
-	move_y = data->c_pos_y - get_average(data, 1);
 	i = -1;
+	if (data->trs_x != 0 || data->trs_y != 0)
+	{
+		move_x = data->trs_x;
+		move_y = data->trs_y;
+	}
+	else
+	{
+		move_x = data->c_pos_x - get_average(data, 0);
+		move_y = data->c_pos_y - get_average(data, 1);
+	}
 	while (++i < data->h)
 	{
 		j = -1;
@@ -59,6 +58,8 @@ void	translate_center(t_data *data)
 			data->map[i][j].y = data->map[i][j].y + move_y;
 		}
 	}
+	//data->c_pos_x = data->c_pos_x + move_x;
+	//data->c_pos_y = data->c_pos_y + move_y;
 	get_map_center(data);
 }
 
@@ -104,7 +105,7 @@ void	fit_to_window(t_data *data, double angle)
 		data->map[0][0].y <= WIN_H / 2)
 			scale_map(data, pow(1.1, ratio));
 	iso_transfer(data, angle, data->z_ratio * data->scale_ratio);
-	translate_center(data);
+	translate_center(data, -1, -1);
 	ratio = ratio + 1;
 	}
 }
