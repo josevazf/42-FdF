@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/19 12:35:02 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/24 14:36:12 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRCS_BONUS		= fdf_main_bonus.c \
 				  fdf_map_bonus.c \
 				  fdf_draw_bonus.c \
 				  fdf_color_bonus.c \
-				  fdf_transform_bonus.c \
+				  fdf_transf1_bonus.c \
+				  fdf_transf2_bonus.c \
 				  fdf_utils_bonus.c \
 				  fdf_error_bonus.c
 
