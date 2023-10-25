@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 18:01:53 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:43:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ typedef struct s_data
 // fdf_main_bonus.c
 void	standard_screen(t_data *data);
 void	set_vars(t_data *data);
-void	menu_info(t_data *data);
 void	menu_controls(t_data *data);
 
 // fdf_map_bonus.c
@@ -121,7 +120,7 @@ void	horizontal_lines(t_data *data);
 // fdf_color_bonus.c
 void	hex_to_rgb(int hex_color, t_point *data);
 int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
-void	make_gradient(t_data *data, int color1, int color2);
+void	make_gradient(t_data *data, int clr1, int clr2, int clr3, int trg);
 void	clean_screen(t_data *data);
 
 // fdf_transf1_bonus.c
