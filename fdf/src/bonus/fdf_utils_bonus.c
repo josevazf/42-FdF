@@ -6,14 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 14:07:06 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:27:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
 /* Get center point for x ->(t = 0) else y */
-/* float	get_average(t_data *data, int t)
+float	get_average(t_data *data, int t)
 {
 	float v1;
 	float v2;
@@ -35,32 +35,6 @@
 		v4 = (float)data->map[data->h - 1][data->w - 1].y;
 	}
 	return ((v1 + v2 + v3 + v4) / 4);
-} */
-
-int		get_average(t_data *data, int t)
-{
-	float v1;
-	float v2;
-	float v3;
-	float v4;
-
-	if (t == 0)
-	{
-		v1 = data->map[0][0].x;
-		v2 = data->map[0][data->w - 1].x;
-		v3 = data->map[data->h - 1][0].x;
-		v4 = data->map[data->h - 1][data->w - 1].x;
-		return((((v1 + v4) / 2) + ((v2 + v3) / 2)) / 2);
-	}
-	else
-	{
-		v1 = data->map[0][0].y;
-		v2 = data->map[0][data->w - 1].y;
-		v3 = data->map[data->h - 1][0].y;
-		v4 = data->map[data->h - 1][data->w - 1].y;
-		return((((v1 + v4) / 2) + ((v2 + v3) / 2)) / 2);
-	}
-	
 }
 
 /* Get the position of the point relative to total h */

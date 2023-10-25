@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:35:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 10:24:40 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:38:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	rotate_x(t_data *data, double angle, int i, int j)
 	int		z2;
 	double	ang;
 	
+	data->z_angle = 
 	data->angle_x = angle;
 	ang = get_rad(data->angle_x);
 	while (++i < data->h)

@@ -6,12 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:41:51 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 19:07:03 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:43:12 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
+/* Deal with malloc failure */
 int	malloc_error(void* input)
 {
 	if (input == NULL)
@@ -19,6 +20,7 @@ int	malloc_error(void* input)
 	return (SUCCESS);
 }
 
+/* Deal with file descriptor failure */
 int	fd_error(int fd)
 {
 	if (fd == -1)
@@ -26,6 +28,7 @@ int	fd_error(int fd)
 	return (SUCCESS);
 }
 
+/* Deal with bad arguments */
 int	args_error(void)
 {
 	ft_printf("fdf usage: ./fdf map_name.fdf\n");

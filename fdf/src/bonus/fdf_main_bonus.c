@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 13:57:44 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:42:01 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,35 +38,6 @@ void	set_vars(t_data *data)
 	data->flag_top = 1;
 }
 
-/* Set coordinates for standard map values */
-void	set_coordinates(t_data *data)
-{
-	int spc_h;
-	int spc_w;
-	int spacing;
-	int i;
-	int j;
-	
-	i = -1;
-	j = -1;
-	spc_w = (WIN_W - 100 )/ (data->w - 1);
-	spc_h = (WIN_H - 100)/ (data->h - 1);
-	if ((spc_h * (data->h - 1) >= WIN_H) ||
-		(spc_h * (data->w - 1) >= WIN_W))
-		spacing = spc_w;
-	else
-		spacing = spc_h;
-	while (++i < data->h)
-	{
-		j = -1;
-		while (++j < data->w)
-		{
-			data->map[i][j].x = 50 + (j * spacing);
-			data->map[i][j].y = 50 + (i * spacing);
-		}
-	}
-}
-
 /* Create the first output image in isometric perspective */
 void	standard_screen(t_data *data)
 {
@@ -87,7 +58,7 @@ void	standard_screen(t_data *data)
 		make_gradient(data, CLR_WHITE, CLR_PINK_NEON);
 }
 
-void	place_menu(t_data *data)
+void	menu_info(t_data *data)
 {
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 35, CLR_WHITE, 
 	"////// MAP INFO //////");
@@ -95,6 +66,11 @@ void	place_menu(t_data *data)
 	"Map Size:");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 95, 50, CLR_WHITE, 
 	ft_strjoin(ft_strjoin(ft_itoa(data->w), "x"),ft_itoa(data->h)));
+	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 135, CLR_WHITE, 
+}
+
+void	menu_controls(t_data *data)
+{
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 39, 135, CLR_WHITE, 
 	"////// CONTROLS //////");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 51, 160, CLR_WHITE, 
