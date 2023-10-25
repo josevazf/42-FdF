@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 14:07:23 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 17:42:14 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ typedef struct s_data
 
 // fdf_main_bonus.c
 void	standard_screen(t_data *data);
-void	set_coordinates(t_data *data);
 void	set_vars(t_data *data);
-void	place_menu(t_data *data);
+void	menu_info(t_data *data);
+void	menu_controls(t_data *data);
 
 // fdf_map_bonus.c
 void	process_map(char *file_name, t_data *data);
@@ -124,16 +124,17 @@ void	make_gradient(t_data *data, int color1, int color2);
 void	clean_screen(t_data *data);
 
 // fdf_transf1_bonus.c
+void	set_coordinates(t_data *data);
 void	scale_map(t_data *data, double factor);
 void	translate_center(t_data *data, int i, int j);
 void	iso_transfer(t_data *data, double angle, float ratio);
 void	fit_to_window(t_data *data, double angle);
-void	scale_height(t_data *data, double factor);
 
 // fdf_transf2_bonus.c
 void	get_map_center(t_data *data);
 void	rotate_x(t_data *data, double angle, int i, int j);
 void	rotate_z(t_data *data, double angle, int i, int j);
+void	scale_height(t_data *data, double factor);
 
 // fdf_events_bonus.c
 int		esc_key(t_data *data);
@@ -143,7 +144,7 @@ void	rotate_map(t_data *data, int key);
 int		key_events(int key, t_data *data);
 
 // fdf_utils_bonus.c
-int		get_average(t_data *data, int t);
+float	get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
