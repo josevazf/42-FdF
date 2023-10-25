@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 17:42:14 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:01:53 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_data
     void    *mlx_ptr;
     void    *win_ptr;
 	t_img	img;
+	char	*map_name;
 }   t_data;
 
 // fdf_main_bonus.c
