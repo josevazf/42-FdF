@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/23 15:23:55 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 14:07:23 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_data
 	int		z_range;
 	float	z_ratio;
 	float	scale_ratio;
+	int		trs_x;
+	int		trs_y;
 	int		c_pos_x;
 	int		c_pos_y;
 	int 	err;
@@ -99,6 +101,7 @@ typedef struct s_data
 void	standard_screen(t_data *data);
 void	set_coordinates(t_data *data);
 void	set_vars(t_data *data);
+void	place_menu(t_data *data);
 
 // fdf_map_bonus.c
 void	process_map(char *file_name, t_data *data);
@@ -116,17 +119,21 @@ void	horizontal_lines(t_data *data);
 
 // fdf_color_bonus.c
 void	hex_to_rgb(int hex_color, t_point *data);
-int		create_rgb(int r, int g, int b);
 int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
 void	make_gradient(t_data *data, int color1, int color2);
 void	clean_screen(t_data *data);
 
-// fdf_transform_bonus.c
+// fdf_transf1_bonus.c
 void	scale_map(t_data *data, double factor);
-void	translate_center(t_data *data);
+void	translate_center(t_data *data, int i, int j);
 void	iso_transfer(t_data *data, double angle, float ratio);
 void	fit_to_window(t_data *data, double angle);
 void	scale_height(t_data *data, double factor);
+
+// fdf_transf2_bonus.c
+void	get_map_center(t_data *data);
+void	rotate_x(t_data *data, double angle, int i, int j);
+void	rotate_z(t_data *data, double angle, int i, int j);
 
 // fdf_events_bonus.c
 int		esc_key(t_data *data);
@@ -136,7 +143,7 @@ void	rotate_map(t_data *data, int key);
 int		key_events(int key, t_data *data);
 
 // fdf_utils_bonus.c
-float	get_average(t_data *data, int t);
+int		get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
 int     get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
