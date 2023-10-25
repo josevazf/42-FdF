@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 13:44:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:48:20 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len)
 }
 
 /* Get the color for all the map points given the gradient */
-void	make_gradient(t_data *data, int color1, int color2)
+void	make_gradient(t_data *data, int clr1, int clr2, int clr3, int trg)
 {
 	int 	i;
 	int		j;
-	float	point;
+	float	pnt_pos;
 	t_point *p1;
 	t_point *p2;
 	
@@ -55,15 +55,30 @@ void	make_gradient(t_data *data, int color1, int color2)
 	j = -1;
 	p1 = malloc(sizeof(t_point));
 	p2 = malloc(sizeof(t_point));
-	p1->clr = color1;
-	p2->clr = color2;
 	while (++i < data->h)
 	{
+		p1->clr = clr1;
+		p2->clr = clr3;
 		j = -1;
 		while (++j < data->w)
 		{
-			point = get_pnt_position(data->map[i][j].z, data);
-			data->map[i][j].clr = get_pnt_color(p1, p2, point, data->z_range);
+			p1->clr = clr1;
+			p2->clr = clr3;
+			pnt_pos = get_pnt_position(data->map[i][j].z, data);
+			if ((pnt_pos < data->z_range / 2) && trg != 0)
+			{
+				p2->clr = clr2;
+				data->map[i][j].clr = get_pnt_color(p1, p2, pnt_pos, data->z_range / 2);
+			}
+			else if ((pnt_pos == data->z_range / 2) && trg != 0)
+				data->map[i][j].clr = clr2;
+			else if ((pnt_pos > data->z_range / 2) && trg != 0)
+			{
+				p1->clr = clr2;
+				data->map[i][j].clr = get_pnt_color(p1, p2, pnt_pos, data->z_range / 2);
+			}
+			else
+				data->map[i][j].clr = get_pnt_color(p1, p2, pnt_pos, data->z_range);
 		}
 	}
 	draw_map(data);

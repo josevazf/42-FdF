@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 17:46:58 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/25 19:14:23 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		esc_key(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		data->win_ptr = NULL;
 		free(data->mlx_ptr);
+		free(data->map_name);
 		ft_free_map(data->map);
 		exit (EXIT_SUCCESS);
 	}
@@ -102,7 +103,7 @@ int		key_events(int key, t_data *data)
 	if (key == XK_Up || key == XK_Down || key == XK_Left || key == XK_Right)
 		translate_map(data, key);
 	if (key == XK_c)
-		make_gradient(data, CLR_GREEN, CLR_RED);
+		make_gradient(data, CLR_GREEN, CLR_YELLOW, CLR_RED, 1);
 	if (key == XK_t)
 		top_view(data);
 	if (key == XK_r)
@@ -110,7 +111,6 @@ int		key_events(int key, t_data *data)
 	if (key == XK_Escape)
 		esc_key(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-	menu_info(data);
 	menu_controls(data);
 	return (SUCCESS);
 }
