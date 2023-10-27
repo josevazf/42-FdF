@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 19:43:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:39:44 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
-# include <time.h> // DELETEEEEEEE
+
 # define ERROR 1
 # define SUCCESS 0
 
@@ -29,19 +29,9 @@
 # define CLR_RED			0xFF0000
 # define CLR_GREEN			0x00FF00
 # define CLR_BLUE			0x0000FF
-# define CLR_YELLOW			0xFFFF00
 # define CLR_WHITE			0xFFFFFF
 # define CLR_BLACK			0x000000
-# define CLR_PINK_NEON		0xFF10F0
-
-# define CLR_TEXT			0xEAEAEA
-# define CLR_MAIN_SCRN_BG	0x222222
-# define CLR_SUB_SCRN_BG	0x1E1E1E
-# define CLR_DISCO			0x9A1F6A
-# define CLR_BRICK_RED		0xC2294E
-# define CLR_FLAMINGO		0xEC4B27
-# define CLR_JAFFA			0xEF8633
-# define CLR_SAFFRON		0xF3AF3D
+# define CLR_NEON			0xFF10F0
 
 typedef struct s_img
 {
@@ -54,7 +44,7 @@ typedef struct s_img
 
 typedef struct s_color
 {
-	int 	r;
+	int		r;
 	int		g;
 	int		b;
 }	t_color;
@@ -65,13 +55,13 @@ typedef struct s_point
 	int		y;
 	int		z;
 	int		clr;
-	t_color	clrRGB;
+	t_color	rgb;
 }	t_point;
 
 typedef struct s_data
 {
-    int     w;
-    int     h;
+	int		w;
+	int		h;
 	int		z_max;
 	int		z_min;
 	double	angle_x;
@@ -84,19 +74,19 @@ typedef struct s_data
 	int		trs_y;
 	int		c_pos_x;
 	int		c_pos_y;
-	int 	err;
+	int		err;
 	int		x1;
 	int		y1;
 	double	z_angle;
 	int		flag_col;
 	int		flag_h;
 	int		flag_top;
-    t_point	**map;
-    void    *mlx_ptr;
-    void    *win_ptr;
+	t_point	**map;
+	void	*mlx_ptr;
+	void	*win_ptr;
 	t_img	img;
 	char	*map_name;
-}   t_data;
+}	t_data;
 
 // fdf_main_bonus.c
 void	standard_screen(t_data *data);
@@ -120,8 +110,9 @@ void	horizontal_lines(t_data *data);
 // fdf_color_bonus.c
 void	hex_to_rgb(int hex_color, t_point *data);
 int		get_pnt_color(t_point *p1, t_point *p2, float pos, int len);
-void	make_gradient(t_data *data, int clr1, int clr2, int clr3, int trg);
-void	clean_screen(t_data *data);
+void	make_gradient(t_data *data, int clr1, int clr2);
+int		terrain_fade(int z);
+void	set_terrain(t_data *data);
 
 // fdf_transf1_bonus.c
 void	set_coordinates(t_data *data);
@@ -132,12 +123,13 @@ void	fit_to_window(t_data *data, double angle);
 
 // fdf_transf2_bonus.c
 void	get_map_center(t_data *data);
-void	rotate_x(t_data *data, double angle, int i, int j);
 void	rotate_z(t_data *data, double angle, int i, int j);
-void	scale_height(t_data *data, double factor);
+void	top_view(t_data *data);
+void	clean_screen(t_data *data);
 
 // fdf_events_bonus.c
 int		esc_key(t_data *data);
+int		scale_height(t_data *data, int key);
 void	translate_map(t_data *data, int key);
 void	zoom_map(t_data *data, int key);
 void	rotate_map(t_data *data, int key);
@@ -146,14 +138,14 @@ int		key_events(int key, t_data *data);
 // fdf_utils_bonus.c
 float	get_average(t_data *data, int t);
 float	get_pnt_position(float z, t_data *data);
-int     get_slope(int p1, int p2);
+int		get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
 double	get_rad(double deg);
 
 // fdf_error_bonus.c
 int		args_error(void);
 int		fd_error(int fd);
-int		malloc_error(void* input);
+int		malloc_error(void *input);
 void	ft_free_map(t_point **matrix);
 
 #endif
