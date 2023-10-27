@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 17:40:05 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:36:31 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 /* Set coordinates for standard map values */
 void	set_coordinates(t_data *data)
 {
-	int spc_h;
-	int spc_w;
-	int spacing;
-	int i;
-	int j;
-	
+	int	spc_h;
+	int	spc_w;
+	int	spacing;
+	int	i;
+	int	j;
+
 	i = -1;
 	j = -1;
-	spc_w = (WIN_W - 100 )/ (data->w - 1);
-	spc_h = (WIN_H - 100)/ (data->h - 1);
-	if ((spc_h * (data->h - 1) >= WIN_H) ||
+	spc_w = (WIN_W - 100) / (data->w - 1);
+	spc_h = (WIN_H - 100) / (data->h - 1);
+	if ((spc_h * (data->h - 1) >= WIN_H) || 
 		(spc_h * (data->w - 1) >= WIN_W))
 		spacing = spc_w;
 	else
@@ -87,8 +87,6 @@ void	translate_center(t_data *data, int i, int j)
 			data->map[i][j].y = data->map[i][j].y + move_y;
 		}
 	}
-	//data->c_pos_x = data->c_pos_x + move_x;
-	//data->c_pos_y = data->c_pos_y + move_y;
 	get_map_center(data);
 }
 
@@ -100,7 +98,7 @@ void	iso_transfer(t_data *data, double angle, float ratio)
 	float	z;
 	int		i;
 	int		j;
-	
+
 	i = -1;
 	while (++i < data->h)
 	{
@@ -112,7 +110,7 @@ void	iso_transfer(t_data *data, double angle, float ratio)
 			z = (float)data->map[i][j].z;
 			data->map[i][j].x = (float)((x - y) * cos(get_rad(angle)));
 			data->map[i][j].y = (float)((x + y) * sin(get_rad(angle)) - 
-			(z * ratio));
+					(z * ratio));
 		}
 	}
 	data->z_angle = angle;
@@ -121,7 +119,7 @@ void	iso_transfer(t_data *data, double angle, float ratio)
 /* Fit isometric view to window */
 void	fit_to_window(t_data *data, double angle)
 {
-	double ratio;
+	double	ratio;
 
 	ratio = 1;
 	while ((data->map[data->h - 1][data->w - 1].y - 
@@ -133,23 +131,8 @@ void	fit_to_window(t_data *data, double angle)
 		else if (data->map[data->h - 1][data->w - 1].y - 
 		data->map[0][0].y <= WIN_H / 2)
 			scale_map(data, pow(1.1, ratio));
-	iso_transfer(data, angle, data->z_ratio * data->scale_ratio);
-	translate_center(data, -1, -1);
-	ratio = ratio + 1;
-	}
-}
-
-/* Scale map with a given factor */
-void	scale_height(t_data *data, double factor)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < data->h)
-	{
-		j = -1;
-		while (++j < data->w)
-			data->map[i][j].z = (double)data->map[i][j].z * factor;
+		iso_transfer(data, angle, data->z_ratio * data->scale_ratio);
+		translate_center(data, -1, -1);
+		ratio = ratio + 1;
 	}
 }

@@ -6,14 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 11:41:51 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 17:43:12 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:32:06 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
 /* Deal with malloc failure */
-int	malloc_error(void* input)
+int	malloc_error(void *input)
 {
 	if (input == NULL)
 		ft_error("fdf: malloc failed", ERROR);
@@ -39,7 +39,7 @@ int	args_error(void)
 void	ft_free_map(t_point **matrix)
 {
 	int	i;
-	
+
 	i = 0;
 	while (matrix[i] != NULL)
 	{

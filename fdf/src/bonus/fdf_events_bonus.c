@@ -6,14 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 19:14:23 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:32:24 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
 
 /* Esc-Press - close window and free all memory */
-int		esc_key(t_data *data)
+int	esc_key(t_data *data)
 {
 	if (data)
 	{
@@ -29,14 +29,35 @@ int		esc_key(t_data *data)
 	return (SUCCESS);
 }
 
+/* Change height representation */
+int	scale_height(t_data *data, int key)
+{
+	if (data->flag_top == 0)
+		return (1);
+	clean_screen(data);
+	scale_map(data, data->scale_ratio);
+	if (data->angle_z != 0)
+		rotate_z(data, data->angle_z, -1, -1);
+	if (key == XK_q)
+	{
+		data->z_ratio = data->z_ratio * 1.1;
+		iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
+	}
+	if (key == XK_e)
+	{
+		data->z_ratio = data->z_ratio * 0.9;
+		iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
+	}
+	translate_center(data, -1, -1);
+	draw_map(data);
+	return (0);
+}
+
+/* Rotate map around a centered Z Axis */
 void	rotate_map(t_data *data, int key)
 {
 	clean_screen(data);
 	scale_map(data, data->scale_ratio);
-	if (key == XK_g)
-		rotate_x(data, data->angle_x + 5, -1, -1);
-	if (key == XK_b)
-		rotate_x(data, data->angle_x - 5, -1, -1);
 	if (key == XK_d)
 		rotate_z(data, data->angle_z + 5, -1, -1);
 	if (key == XK_a)
@@ -47,18 +68,7 @@ void	rotate_map(t_data *data, int key)
 	draw_map(data);
 }
 
-void	top_view(t_data *data)
-{
-	data->flag_top = 0;
-	data->z_angle = 0;
-	data->angle_x = 0;
-	data->angle_z = 0;
-	clean_screen(data);
-	scale_map(data, data->scale_ratio);
-	translate_center(data, -1, -1);
-	draw_map(data);
-}
-
+/* Translate map in 4 directions */
 void	translate_map(t_data *data, int key)
 {
 	clean_screen(data);
@@ -76,6 +86,7 @@ void	translate_map(t_data *data, int key)
 	data->trs_y = 0;
 }
 
+/* Zoom map in and out */
 void	zoom_map(t_data *data, int key)
 {
 	clean_screen(data);
@@ -83,34 +94,10 @@ void	zoom_map(t_data *data, int key)
 		scale_map(data, data->scale_ratio * 1.1);
 	if (key == XK_s)
 		scale_map(data, data->scale_ratio * 0.9);
-	if (data->angle_x != 0)
-		rotate_x(data, data->angle_x, -1, -1);
 	if (data->angle_z != 0)
 		rotate_z(data, data->angle_z, -1, -1);
 	if (data->z_angle != 0)
 		iso_transfer(data, data->z_angle, data->z_ratio * data->scale_ratio);
 	translate_center(data, -1, -1);
 	draw_map(data);
-}
-
-/* Trigger key press events */
-int		key_events(int key, t_data *data)
-{
-	if (key == XK_a || key == XK_d || key == XK_g || key == XK_b)
-		rotate_map(data, key);
-	if (key == XK_w || key == XK_s)
-		zoom_map(data, key);
-	if (key == XK_Up || key == XK_Down || key == XK_Left || key == XK_Right)
-		translate_map(data, key);
-	if (key == XK_c)
-		make_gradient(data, CLR_GREEN, CLR_YELLOW, CLR_RED, 1);
-	if (key == XK_t)
-		top_view(data);
-	if (key == XK_r)
-		standard_screen(data);
-	if (key == XK_Escape)
-		esc_key(data);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
-	menu_controls(data);
-	return (SUCCESS);
 }

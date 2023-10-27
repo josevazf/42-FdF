@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 18:29:17 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:34:56 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	create_map(t_data *data)
 
 	i = -1;
 	data->map = (t_point **)malloc(sizeof(t_point *) * (data->h + 1));
-	malloc_error(data->map);	
+	malloc_error(data->map);
 	while (++i < data->h)
 	{
 		data->map[i] = (t_point *)malloc(sizeof(t_point) * (data->w + 1));
-		malloc_error(data->map[i]);	
+		malloc_error(data->map[i]);
 	}
 }
 
@@ -91,8 +91,8 @@ void	fill_map(t_point *map, char *line, t_data *data)
 void	process_map(char *file_name, t_data *data)
 {
 	char	*line;
-	int 	i;
-	int 	fd;
+	int		i;
+	int		fd;
 
 	i = -1;
 	set_vars(data);

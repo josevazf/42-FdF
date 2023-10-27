@@ -6,44 +6,33 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:35:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 17:38:08 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:36:49 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf_bonus.h"
+
+/* Fills the screen with black pixels */
+void	clean_screen(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (++i < WIN_W)
+	{
+		j = -1;
+		while (++j < WIN_H)
+			put_pixel(&data->img, i, j, CLR_BLACK);
+	}
+}
 
 /* Get center of map representation */
 void	get_map_center(t_data *data)
 {
 	data->c_pos_x = get_average(data, 0);
 	data->c_pos_y = get_average(data, 1);
-}
-
-/* Rotate around Z axis by the center of the map  */
-void	rotate_x(t_data *data, double angle, int i, int j)
-{
-	int		y1;
-	int		z1;
-	int		y2;
-	int		z2;
-	double	ang;
-	
-	data->z_angle = 
-	data->angle_x = angle;
-	ang = get_rad(data->angle_x);
-	while (++i < data->h)
-	{
-		j = -1;
-		while (++j < data->w)
-		{
-			y1 = (data->map[i][j].y - data->c_pos_y);
-			z1 = (data->map[i][j].z - (data->z_range / 2));
-			y2 = y1 * cos(ang) - z1 * sin(ang);
-			z2 = y1 * sin(ang) + z1 * cos(ang);
-			data->map[i][j].y = y2 + data->c_pos_y;
-			data->map[i][j].z = (z2 + (data->z_range / 2));
-		}
-	}
 }
 
 /* Rotate around Z axis by the center of the map */
@@ -54,7 +43,7 @@ void	rotate_z(t_data *data, double angle, int i, int j)
 	int		x2;
 	int		y2;
 	double	ang;
-	
+
 	data->angle_z = angle;
 	ang = get_rad(data->angle_z);
 	while (++i < data->h)
@@ -70,4 +59,17 @@ void	rotate_z(t_data *data, double angle, int i, int j)
 			data->map[i][j].y = y2 + data->c_pos_y;
 		}
 	}
+}
+
+/* Transform map to Top View */
+void	top_view(t_data *data)
+{
+	data->flag_top = 0;
+	data->z_angle = 0;
+	data->angle_x = 0;
+	data->angle_z = 0;
+	clean_screen(data);
+	scale_map(data, data->scale_ratio);
+	translate_center(data, -1, -1);
+	draw_map(data);
 }

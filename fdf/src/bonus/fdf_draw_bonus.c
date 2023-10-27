@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 11:31:24 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/25 11:12:04 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:31:45 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,22 @@ void	put_pixel(t_img *img, int x, int y, int color)
 }
 
 /* Draw map by vertical and horizontal lines */
-void    draw_map(t_data *data)
+void	draw_map(t_data *data)
 {
 	vertical_lines(data);
 	horizontal_lines(data);
 	if (data->x1 > 0 && data->x1 < WIN_W - 5 && data->y1 > 0 && 
-	data->y1 < WIN_H - 5)
+		data->y1 < WIN_H - 5)
 		put_pixel(&data->img, data->map[data->h - 1][data->w - 1].x, 
-		data->map[data->h - 1][data->w - 1].y, 
-		data->map[data->h - 1][data->w - 1].clr);
+			data->map[data->h - 1][data->w - 1].y, 
+			data->map[data->h - 1][data->w - 1].clr);
 }
 
 /* Define and draw vertical lines */
 void	vertical_lines(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = -1;
@@ -56,8 +56,8 @@ void	vertical_lines(t_data *data)
 /* Define and draw horizontal lines */
 void	horizontal_lines(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = -1;
 	j = -1;
@@ -74,10 +74,10 @@ void	horizontal_lines(t_data *data)
 }
 
 /* Draw lines with gradient between p1 and p2 */
-void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
+void	draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 {
-	int dx;
-	int dy;
+	int	dx;
+	int	dy;
 
 	dx = abs(p2->x - data->x1);
 	dy = abs(p2->y - data->y1);
@@ -85,9 +85,9 @@ void    draw_lines(t_point *p1, t_point *p2, t_data *data, int i)
 	while (++i < ft_int_max(dx, dy))
 	{
 		if (data->x1 > 0 && data->x1 < WIN_W - 5 && data->y1 > 0 && 
-		data->y1 < WIN_H - 5)
+			data->y1 < WIN_H - 5)
 			put_pixel(&data->img, data->x1, data->y1, get_pnt_color(p1, p2, i, 
-			ft_int_max(dx, dy)));
+					ft_int_max(dx, dy)));
 		if (data->x1 == p2->x && data->y1 == p2->y)
 			break ;
 		if (2 * data->err > -dy)
