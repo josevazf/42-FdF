@@ -6,12 +6,9 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 09:01:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/02 18:53:07 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:45:33 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* Returns an array of strings obtained by splitting ’s’ using the
-   character ’c’ as a delimiter. */
 
 #include "libft.h"
 
@@ -27,6 +24,8 @@ static char	*ft_strposi(char const *s, char c, int pos)
 	return (subs);
 }
 
+/* Returns an array of strings obtained by splitting ’s’ using the
+   character ’c’ as a delimiter. */
 char	**ft_split(char const *s, char c)
 {
 	char	**out;

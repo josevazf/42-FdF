@@ -6,15 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 09:13:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:31:19 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:46:42 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Locates the	first occurrence of string 'little' in string 'big'
-   where not more than 'len' characters are searched. */
-
 #include "libft.h"
 
+/* Locates the	first occurrence of string 'little' in string 'big'
+   where not more than 'len' characters are searched. */
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t	i;

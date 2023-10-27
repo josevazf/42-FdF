@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/13 15:51:33 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 14:33:03 by jrocha-v         ###   ########.fr       */
+/*   Created: 2023/10/27 14:39:57 by jrocha-v          #+#    #+#             */
+/*   Updated: 2023/10/27 14:44:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* Place len zero-valued bytes in the area pointed to by s. */
-void	ft_bzero(void *b, size_t len)
+/* Get size of number 'n'*/
+int	ft_nbrlen(long n)
 {
-	size_t			i;
-	unsigned char	*str;
+	int	i;
 
-	str = (unsigned char *)b;
-	i = 0;
-	while (i < len)
+	i = 1;
+	if (n < 0)
 	{
-		str[i] = '\0';
+		n = n * -1;
 		i++;
 	}
+	while (n >= 10)
+	{
+		n = n / 10;
+		i++;
+	}
+	return (i);
 }

@@ -6,15 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 10:01:51 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:33:37 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:44:21 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Sets the first 'len' bytes of the block of memory pointed by 'dest' 
-   to the specified value 'c'. */
-
 #include "libft.h"
 
+/* Sets the first 'len' bytes of the block of memory pointed by 'dest' 
+   to the specified value 'c'. */
 void	*ft_memset(void *dest, int c, size_t len)
 {
 	size_t	i;

@@ -6,11 +6,9 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 16:50:10 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:32:38 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:45:47 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* Returns a pointer to 'dest', which is a duplicate of the string 'src'. */
 
 #include "libft.h"
 
@@ -28,6 +26,7 @@ static char	*ft_strcpy(char *dest, const char *src)
 	return (dest);
 }
 
+/* Returns a pointer to 'dest', which is a duplicate of the string 'src'. */
 char	*ft_strdup(const char *str)
 {
 	char	*temp;

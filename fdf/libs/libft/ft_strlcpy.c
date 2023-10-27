@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:34:49 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:32:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:46:15 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Copies up to 'size − 1' characters from the string 'src' to 'dest'. */
-
 #include "libft.h"
 
+/* Copies up to 'size − 1' characters from the string 'src' to 'dest'. */
 size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
 	size_t	i;

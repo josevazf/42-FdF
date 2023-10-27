@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 17:24:10 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:35:52 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:45:40 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Returns a pointer to the first occurrence of character 'c' in string 'str'.*/
-
 #include "libft.h"
 
+/* Returns a pointer to the first occurrence of character 'c' in string 'str'.*/
 char	*ft_strchr(const char *str, int c)
 {
 	int	i;

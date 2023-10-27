@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 09:26:26 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/17 12:24:56 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:41:11 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		ft_isinbase(char c, int str_base, char *base);
 int		ft_atoi_base(const char *str, int str_base);
 int		ft_int_max(int x, int y);
 int		ft_checkext(char *str, char *ext);
+int		ft_nbrlen(long n);
 
 // List manipulation
 t_list	*ft_lstnew(void *content);

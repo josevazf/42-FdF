@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 17:36:44 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:18:46 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:46:04 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Returns a new string, the result of the concatenation of ’s1’ and ’s2’. */
-
 #include "libft.h"
 
+/* Returns a new string, the result of the concatenation of ’s1’ and ’s2’. */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;

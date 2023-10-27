@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:48:56 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 13:13:35 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:42:46 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Returns the last node of the list. */
-
 #include "libft.h"
 
+/* Returns the last node of the list. */
 t_list	*ft_lstlast(t_list *lst)
 {
 	if (lst)

@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 19:15:37 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:33:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:45:15 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Outputs the integer ’n’ to the given file descriptor 'fd'. */
-
 #include "libft.h"
 
+/* Outputs the integer ’n’ to the given file descriptor 'fd'. */
 void	ft_putnbr_fd(int n, int fd)
 {
 	long	nb;

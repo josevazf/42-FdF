@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:47:37 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:31:26 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:46:35 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Compares up to size characters of string 's1' to those of string 's2'. */
-
 #include "libft.h"
 
+/* Compares up to size characters of string 's1' to those of string 's2'. */
 int	ft_strncmp(const char *s1, const char *s2, size_t size)
 {
 	size_t	i;

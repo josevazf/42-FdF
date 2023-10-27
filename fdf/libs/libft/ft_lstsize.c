@@ -6,14 +6,13 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:45:39 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 13:17:15 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:43:45 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Counts the number of nodes in a list. */
-
 #include "libft.h"
 
+/* Counts the number of nodes in a list. */
 int	ft_lstsize(t_list *lst)
 {
 	size_t	i;

@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
+/*   ft_free_imatrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:45:40 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/04 12:09:34 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:37:28 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_imatrix(int** matrix)
+/* Free a integers matrix. */
+void	ft_free_imatrix(int **matrix)
 {
 	int	i;
-	
+
 	i = 0;
 	while (matrix[i] != NULL)
 	{

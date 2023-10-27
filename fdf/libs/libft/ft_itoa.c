@@ -6,31 +6,11 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 15:32:25 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:34:54 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:41:22 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Converts an integer 'n' to a null-terminated string. */
-
 #include "libft.h"
-
-static int	ft_nbrlen(long n)
-{
-	int	i;
-
-	i = 1;
-	if (n < 0)
-	{
-		n = n * -1;
-		i++;
-	}
-	while (n >= 10)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
-}
 
 static void	ft_putnbr_i(long n, char *str, int *i)
 {
@@ -43,6 +23,7 @@ static void	ft_putnbr_i(long n, char *str, int *i)
 		str[(*i)++] = n + '0';
 }
 
+/* Converts an integer 'n' to a null-terminated string. */
 char	*ft_itoa(int n)
 {
 	char	*str;

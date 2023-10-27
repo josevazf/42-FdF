@@ -6,15 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:35:00 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/04/19 14:32:25 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:46:09 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* Appends the string 'src' to the end of 'dest'. 
-   It will append at most 'size − strlen(dest) − 1' bytes. */
-
 #include "libft.h"
 
+/* Appends the string 'src' to the end of 'dest'. 
+   It will append at most 'size − strlen(dest) − 1' bytes. */
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
 	size_t	i;
