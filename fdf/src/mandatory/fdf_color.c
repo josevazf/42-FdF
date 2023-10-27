@@ -6,30 +6,27 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 17:36:24 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 09:04:29 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		create_rgb(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
-
+/* Converts hex rgb representation to each value of r, g and b */
 void	hex_to_rgb(int hex_color, t_point *point)
 {
-	point->clrRGB.r = (hex_color >> 16) & 0xFF;
-	point->clrRGB.g = (hex_color >> 8) & 0xFF;
-	point->clrRGB.b = (hex_color & 0xFF);
+	point->rgb.r = (hex_color >> 16) & 0xFF;
+	point->rgb.g = (hex_color >> 8) & 0xFF;
+	point->rgb.b = (hex_color & 0xFF);
 }
 
-int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len)
+/* Get the color for the gradient point between p1 and p2*/
+int	get_pnt_color(t_point *p1, t_point *p2, int pos, int len)
 {
-	int r;
-	int g;
-	int b;
-	float ratio;
+	int		r;
+	int		g;
+	int		b;
+	float	ratio;
 
 	ratio = (float)pos / (float)len;
 	hex_to_rgb(p1->clr, p1);
@@ -38,21 +35,22 @@ int		get_pnt_color(t_point *p1, t_point *p2, int pos, int len)
 		return (p1->clr);
 	else
 	{
-		r = p1->clrRGB.r + ((p2->clrRGB.r - p1->clrRGB.r) * ratio);
-		g = p1->clrRGB.g + ((p2->clrRGB.g - p1->clrRGB.g) * ratio);
-		b = p1->clrRGB.b + ((p2->clrRGB.b - p1->clrRGB.b) * ratio);
+		r = p1->rgb.r + ((p2->rgb.r - p1->rgb.r) * ratio);
+		g = p1->rgb.g + ((p2->rgb.g - p1->rgb.g) * ratio);
+		b = p1->rgb.b + ((p2->rgb.b - p1->rgb.b) * ratio);
 		return (r << 16 | g << 8 | b);
 	}
 }
 
+/* Get the color for all the map points given the gradient */
 void	make_gradient(t_data *data, int color1, int color2)
 {
-	int 	i;
+	int		i;
 	int		j;
 	int		point;
-	t_point *p1;
-	t_point *p2;
-	
+	t_point	*p1;
+	t_point	*p2;
+
 	i = -1;
 	j = -1;
 	p1 = malloc(sizeof(t_point));

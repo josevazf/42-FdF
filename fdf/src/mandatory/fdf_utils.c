@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 14:16:36 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 19:21:22 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 08:53:30 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 /* Get center point for x ->(t = 0) else y */
 float	get_average(t_data *data, int t)
 {
-	float v1;
-	float v2;
-	float v3;
-	float v4;
+	float	v1;
+	float	v2;
+	float	v3;
+	float	v4;
 
 	if (t == 0)
 	{
@@ -40,18 +40,18 @@ float	get_average(t_data *data, int t)
 /* Get the position of the point relative to total height */
 float	get_pnt_position(float z, t_data *data)
 {
-	float norm;
-	
+	float	norm;
+
 	norm = (z - data->z_min) / (data->z_max - data->z_min);
 	return (norm * data->z_range);
 }
 
 /* Get direction to draw line */
-int     get_slope(int p1, int p2)
+int	get_slope(int p1, int p2)
 {
 	if (p1 < p2)
 		return (1);
-	return(-1);
+	return (-1);
 }
 
 /* Get value to smooth Z representation */

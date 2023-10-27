@@ -6,14 +6,14 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:21:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/19 15:29:21 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 08:44:37 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
 /* Esc-Press - close window and free all memory */
-int		esc_key(t_data *data)
+int	esc_key(t_data *data)
 {
 	if (data)
 	{
@@ -28,21 +28,12 @@ int		esc_key(t_data *data)
 	return (SUCCESS);
 }
 
-/* C-Press - Create a red->yellow->green gradient */
-void	c_key(t_data *data)
-{
-	make_gradient(data, CLR_GREEN, CLR_RED);
-}
-
 /* Trigger key press events */
-int		key_events(int key, t_data *data)
+int	key_events(int key, t_data *data)
 {
-	if (key == XK_c)
-		c_key(data);
 	if (key == XK_Escape)
 		esc_key(data);
-	//color_screen(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, 
-	data->img.mlx_img, 0, 0);
+		data->img.mlx_img, 0, 0);
 	return (0);
 }

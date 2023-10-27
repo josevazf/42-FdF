@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 12:25:45 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/18 15:42:38 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/27 08:51:24 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	scale_map(t_data *data, double factor)
 		j = -1;
 		while (++j < data->width)
 		{
-				data->map[i][j].x = (double)data->map[i][j].x * factor;
-				data->map[i][j].y = (double)data->map[i][j].y * factor;
+			data->map[i][j].x = (double)data->map[i][j].x * factor;
+			data->map[i][j].y = (double)data->map[i][j].y * factor;
 		}
 	}
 }
@@ -46,8 +46,8 @@ void	center_map(t_data *data)
 		j = -1;
 		while (++j < data->width)
 		{
-				data->map[i][j].x = data->map[i][j].x + move_x;
-				data->map[i][j].y = data->map[i][j].y + move_y;
+			data->map[i][j].x = data->map[i][j].x + move_x;
+			data->map[i][j].y = data->map[i][j].y + move_y;
 		}
 	}
 }
@@ -60,7 +60,7 @@ void	iso_transfer(t_data *data)
 	float	z;
 	int		i;
 	int		j;
-	
+
 	i = -1;
 	while (++i < data->height)
 	{
@@ -72,7 +72,7 @@ void	iso_transfer(t_data *data)
 			z = (float)data->map[i][j].z;
 			data->map[i][j].x = (float)((x - y) * cos(0.5236));
 			data->map[i][j].y = (float)((x + y) * sin(0.5236) - 
-			(z * data->z_ratio));
+					(z * data->z_ratio));
 		}
 	}
 }
@@ -80,7 +80,7 @@ void	iso_transfer(t_data *data)
 /* Fit isometric view to window */
 void	fit_to_window(t_data *data)
 {
-	double ratio;
+	double	ratio;
 
 	ratio = 1;
 	while ((data->map[data->height - 1][data->width - 1].y - 
@@ -98,8 +98,8 @@ void	fit_to_window(t_data *data)
 			set_coordinates(data);
 			scale_map(data, pow(1.1, ratio));
 		}
-	iso_transfer(data);
-	center_map(data);
-	ratio = ratio + 1;
+		iso_transfer(data);
+		center_map(data);
+		ratio = ratio + 1;
 	}
 }
