@@ -6,7 +6,7 @@
 #    By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 10:36:01 by jrocha-v          #+#    #+#              #
-#    Updated: 2023/10/24 14:36:12 by jrocha-v         ###   ########.fr        #
+#    Updated: 2023/10/27 10:40:06 by jrocha-v         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,6 @@ LIBMLX_DIR		= ./libs/minilibx-linux
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
 MLX_FLAGS		= -lmlx_Linux -lXext -lX11 -lm -lbsd
-
-#gcc program.c -Lminilibx-linux -lmlx_Linux -o process -lX11 -lXext
 
 MK_FLAG			= --no-print-directory
 RM				= rm -rf
