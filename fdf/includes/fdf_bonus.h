@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 10:39:44 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/29 09:54:57 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void	get_zratio(t_data *data);
 double	get_rad(double deg);
 
 // fdf_error_bonus.c
+int		map_error(void);
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void *input);
