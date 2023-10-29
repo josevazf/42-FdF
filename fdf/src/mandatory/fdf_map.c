@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 17:27:29 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 09:01:43 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/29 09:46:14 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	get_dimensions(char *file_name, t_data *data)
 		free(line);
 	}
 	close(fd);
+	if (data->width <= 1 || data->height <= 1)
+		map_error();
 }
 
 /* Create an empty matrix representation of the map */
