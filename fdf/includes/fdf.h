@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 09:07:01 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/29 09:46:50 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int		get_slope(int p1, int p2);
 void	get_zratio(t_data *data);
 
 // fdf_error.c
+int		map_error(void);
 int		args_error(void);
 int		fd_error(int fd);
 int		malloc_error(void *input);
