@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 10:34:00 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:55:27 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	set_vars(t_data *data)
 	data->z_min = 0;
 	data->z_range = 0;
 	data->z_ratio = 0;
-	data->angle_x = 0;
-	data->angle_y = 0;
 	data->angle_z = 0;
 	data->scale_ratio = 1;
 	data->trs_x = 0;
@@ -43,7 +41,6 @@ void	standard_screen(t_data *data)
 {
 	clean_screen(data);
 	data->flag_top = 1;
-	data->angle_x = 0;
 	data->angle_z = 0;
 	data->z_angle = 30;
 	data->c_pos_x = WIN_W / 2;
@@ -69,10 +66,8 @@ int	key_events(int key, t_data *data)
 		zoom_map(data, key);
 	if (key == XK_Up || key == XK_Down || key == XK_Left || key == XK_Right)
 		translate_map(data, key);
-	if (key == XK_1)
-		make_gradient(data, CLR_GREEN, CLR_RED);
-	if (key == XK_2)
-		set_terrain(data);
+	if (key == XK_1 || key == XK_2 || key == XK_3 || key == XK_4)
+		change_colors(data, key);
 	if (key == XK_t)
 		top_view(data);
 	if (key == XK_r)
