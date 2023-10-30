@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/29 09:54:57 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/30 10:52:43 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_data
 // fdf_main_bonus.c
 void	standard_screen(t_data *data);
 void	set_vars(t_data *data);
+int		key_events(int key, t_data *data);
 void	menu_controls(t_data *data);
 
 // fdf_map_bonus.c
@@ -127,13 +128,15 @@ void	rotate_z(t_data *data, double angle, int i, int j);
 void	top_view(t_data *data);
 void	clean_screen(t_data *data);
 
-// fdf_events_bonus.c
+// fdf_events1_bonus.c
 int		esc_key(t_data *data);
 int		scale_height(t_data *data, int key);
 void	translate_map(t_data *data, int key);
 void	zoom_map(t_data *data, int key);
 void	rotate_map(t_data *data, int key);
-int		key_events(int key, t_data *data);
+
+// fdf_events2_bonus.c
+void	change_colors(t_data *data, int key);
 
 // fdf_utils_bonus.c
 float	get_average(t_data *data, int t);
