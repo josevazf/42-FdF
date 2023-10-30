@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 17:10:03 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 10:30:41 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/30 09:22:26 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	make_gradient(t_data *data, int clr1, int clr2)
 	free(p2);
 }
 
+/* Return color for terrain gradient */
 int	terrain_fade(int z)
 {
 	if (z > 1100)
@@ -94,6 +95,7 @@ int	terrain_fade(int z)
 	return (0x05093d);
 }
 
+/* Set color for terrain gradient */
 void	set_terrain(t_data *data)
 {
 	int	i;
