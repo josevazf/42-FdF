@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 09:49:31 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/30 10:52:43 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:07:07 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ typedef struct s_data
 	int		h;
 	int		z_max;
 	int		z_min;
-	double	angle_x;
-	double	angle_y;
 	double	angle_z;
 	int		z_range;
 	float	z_ratio;

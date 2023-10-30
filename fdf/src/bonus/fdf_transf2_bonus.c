@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 14:35:05 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/27 10:36:49 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:20:08 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	top_view(t_data *data)
 {
 	data->flag_top = 0;
 	data->z_angle = 0;
-	data->angle_x = 0;
 	data->angle_z = 0;
 	clean_screen(data);
 	scale_map(data, data->scale_ratio);
