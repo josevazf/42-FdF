@@ -6,7 +6,7 @@
 /*   By: jrocha-v <jrocha-v@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:14:52 by jrocha-v          #+#    #+#             */
-/*   Updated: 2023/10/30 10:55:27 by jrocha-v         ###   ########.fr       */
+/*   Updated: 2023/10/30 11:02:42 by jrocha-v         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	menu_controls(t_data *data)
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 235, CLR_WHITE, 
 		"Q/E     scale height");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 265, CLR_WHITE, 
-		"1-2     change gradient");
+		"1-4     change gradient");
 	mlx_string_put(data->mlx_ptr, data->win_ptr, 40, 295, CLR_WHITE, 
 		"Esc     close window");
 }
