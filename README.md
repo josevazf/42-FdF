@@ -16,9 +16,9 @@ Extra features that are triggered by the keyboard:
 
 ## Rendering
 
-The program first represents the model in isometric projection and with a color gradient associated to the height variation.\
+The program first represents the model in isometric projection and with a color gradient associated to the altitude.\
 The coordinates of the landscape are stored in a .fdf file passed as a parameter to
-your program.\
+the program.\
 Each number represents a point in space:
 - The horizontal position corresponds to its axis.
 - The vertical position corresponds to its ordinate.
